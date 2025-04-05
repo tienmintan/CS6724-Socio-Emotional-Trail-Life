@@ -20,12 +20,12 @@ tab_titles = [
 selected_tab = st.sidebar.radio("Select a Team Member", tab_titles)
 
 if selected_tab == "Afreen":
-    st.markdown("## **Content for Afreen**")
+    st.markdown("## **Content by Afreen**")
 elif selected_tab == "Shamsia":
-    st.markdown("## **Content for Shamsia**")
+    st.markdown("## **Content by Shamsia**")
 elif selected_tab == "Emily":
-    st.markdown("## **Content for Emily**")
+    st.markdown("## **Content by Emily**")
 elif selected_tab == "Krish":
-    st.markdown("## **Content for Krish**")
+    st.markdown("## **Content by Krish**")
 elif selected_tab == "Tien Man":
-    st.markdown("## **Content for Tien Man**")
+    st.markdown("## **Content by Tien Man**")
