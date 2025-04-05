@@ -8,3 +8,4 @@ st.set_page_config(
 )
 
 st.title("Socio-Emotional Trail Analysis")  
+st.sidebar.success("Select a page above.")
