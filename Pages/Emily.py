@@ -558,7 +558,7 @@ def create_top_10_monthly_proportions(selected_year):
             x=1
         )
     )
-     fig_top_10_monthly_proportions.update_traces(
+    fig_top_10_monthly_proportions.update_traces(
         hovertemplate='<b>%{x}</b><br>Emotion: %{customdata[0]}<br>Count: %{customdata[1]}<br>Proportion: %{customdata[2]:.2%}',
         texttemplate='%{y:.2%}', textposition='outside',
         customdata=emotion_counts_top_10_monthly[['label', 'count', 'proportion']].values,
