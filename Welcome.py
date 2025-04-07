@@ -17,11 +17,9 @@ with col1:
     st.image("https://images.unsplash.com/photo-1558483754-4618fc25fe5e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", use_container_width=True)
 
 with col2:
-    col2.empty()
-    col2.empty()
     st.markdown(
         """
-        <div style="font-size: 20px;">
+        <div style="font-size: 20px; margin-top: 30px;">
         Emotional well-being is vital for individuals experiencing a life transition journey, 
         as it helps them maintain resilience, stay focused, and inform their decision-making. 
 
