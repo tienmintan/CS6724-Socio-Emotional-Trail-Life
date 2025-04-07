@@ -4,9 +4,9 @@ import plotly.express as px
 
 # Emily's code is below
 # Define the file paths
-file_path_top_10 = '/content/2025-03-25_Top10Pct.xlsx'
-file_path_emotions = '/content/Emotions Visualization Chart.xlsx'
-file_path_top_10_extraction = '/content/Top Ten Percent Data Extraction.xlsx'
+file_path_top_10 = '/emilyelkins/2025-03-25_Top10Pct.xlsx'
+file_path_emotions = '/emilyelkins/Emotions Visualization Chart.xlsx'
+file_path_top_10_extraction = '/emilyelkins/Top Ten Percent Data Extraction.xlsx'
 
 # Load the Excel files
 df_top_10 = pd.read_excel(file_path_top_10, sheet_name='Top_10pct_Miles_2021-23', engine='openpyxl')
