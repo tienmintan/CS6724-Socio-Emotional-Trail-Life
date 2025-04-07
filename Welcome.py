@@ -31,4 +31,7 @@ with col2:
     of a dynamic socio-technical-natural system by leveraging AI-driven techniques and machine learning 
     algorithms on large-scale data.
     """)
+
+col1.empty()
+col2.empty()
     
