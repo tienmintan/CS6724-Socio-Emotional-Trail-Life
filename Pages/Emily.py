@@ -577,43 +577,23 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("Visualizations Made By Our Team")  
+st.title("Visualizations Made By Emily")  
 
-tab_titles = [
-    "Afreen",
-    "Shamsia",
-    "Emily",
-    "Krish",
-    "Tien Man"
-]
-
-selected_tab = st.sidebar.radio("Select a Team Member", tab_titles)
-
-if selected_tab == "Afreen":
-    st.markdown("## **Content by Afreen**")
-elif selected_tab == "Shamsia":
-    st.markdown("## **Content by Shamsia**")
-elif selected_tab == "Emily":
-    st.markdown("## **Content by Emily**")
-    selected_year = st.selectbox("Select Year", [2021, 2022, 2023])
-    hiker_trail_names = df_top_10['Hiker trail name'].unique()
-    for hiker in hiker_trail_names:
-        df_hiker = df_top_10[df_top_10['Hiker trail name'] == hiker]
-        fig_hiker = create_hiker_graph(df_hiker, hiker, selected_year)
-        st.plotly_chart(fig_hiker)
-    fig_monthly_emotion_trends = create_monthly_emotion_trends(selected_year)
-    st.plotly_chart(fig_monthly_emotion_trends)
-    fig_emotion_proportions = create_emotion_proportions(selected_year)
-    st.plotly_chart(fig_emotion_proportions)
-    fig_proportion_bar = create_proportion_bar(selected_year)
-    st.plotly_chart(fig_proportion_bar)
-    fig_count_bar = create_count_bar(selected_year)
-    st.plotly_chart(fig_count_bar)
-    fig_top_10_monthly_counts = create_top_10_monthly_counts(selected_year)
-    st.plotly_chart(fig_top_10_monthly_counts)
-    fig_top_10_monthly_proportions = create_top_10_monthly_proportions(selected_year)
-    st.plotly_chart(fig_top_10_monthly_proportions
-elif selected_tab == "Krish":
-    st.markdown("## **Content by Krish**")
-elif selected_tab == "Tien Man":
-    st.markdown("## **Content by Tien Man**")
+selected_year = st.selectbox("Select Year", [2021, 2022, 2023])
+hiker_trail_names = df_top_10['Hiker trail name'].unique()
+for hiker in hiker_trail_names:
+    df_hiker = df_top_10[df_top_10['Hiker trail name'] == hiker]
+    fig_hiker = create_hiker_graph(df_hiker, hiker, selected_year)
+    st.plotly_chart(fig_hiker)
+fig_monthly_emotion_trends = create_monthly_emotion_trends(selected_year)
+st.plotly_chart(fig_monthly_emotion_trends)
+fig_emotion_proportions = create_emotion_proportions(selected_year)
+st.plotly_chart(fig_emotion_proportions)
+fig_proportion_bar = create_proportion_bar(selected_year)
+st.plotly_chart(fig_proportion_bar)
+fig_count_bar = create_count_bar(selected_year)
+st.plotly_chart(fig_count_bar)
+fig_top_10_monthly_counts = create_top_10_monthly_counts(selected_year)
+st.plotly_chart(fig_top_10_monthly_counts)
+fig_top_10_monthly_proportions = create_top_10_monthly_proportions(selected_year)
+st.plotly_chart(fig_top_10_monthly_proportions
