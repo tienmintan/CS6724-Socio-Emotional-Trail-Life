@@ -596,4 +596,4 @@ st.plotly_chart(fig_count_bar)
 fig_top_10_monthly_counts = create_top_10_monthly_counts(selected_year)
 st.plotly_chart(fig_top_10_monthly_counts)
 fig_top_10_monthly_proportions = create_top_10_monthly_proportions(selected_year)
-st.plotly_chart(fig_top_10_monthly_proportions
+st.plotly_chart(fig_top_10_monthly_proportions)
