@@ -43,7 +43,7 @@ with tabs[2]:
     st.header("Negative Emotions Across the Trail")
     st.write("😞 ")
 
-    with open("negative emotions map", "r", encoding="utf-8") as file:
+    with open("negative emotions map.html", "r", encoding="utf-8") as file:
         map_html = file.read()
 
     components.html(map_html, height=600, scrolling=True)
