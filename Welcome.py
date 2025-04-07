@@ -17,8 +17,8 @@ with col1:
     st.image("https://images.unsplash.com/photo-1558483754-4618fc25fe5e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", use_container_width=True)
 
 with col2:
-    st.markdown("""
-    <p style="font-size: 20px;">
+    st.markdown('<span style="font-size: 18px;">Larger text</span>',
+    """'<span style="font-size: 24px;">Larger text</span>',
     Emotional well-being is vital for individuals experiencing a life transition journey, 
     as it helps them maintain resilience, stay focused, and inform their decision-making. 
 
@@ -31,7 +31,6 @@ with col2:
     This project explores how social connections relate to hikers' emotional states amidst the uncertainties 
     of a dynamic socio-technical-natural system by leveraging AI-driven techniques and machine learning 
     algorithms on large-scale data.
-    </p>
     """, unsafe_allow_html=True)
 
 col1.empty()
