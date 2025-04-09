@@ -41,7 +41,10 @@ nvidia-nvjitlink-cu12==12.8.93
 nvidia-nvtx-cu12==12.1.105
 packaging==24.2
 pandas==2.2.3
+patsy==1.0.1
 pillow==11.1.0
+plotly==6.0.1
+plotly-express==0.4.1
 protobuf==5.29.4
 pyarrow==19.0.1
 pydeck==0.9.1
@@ -58,6 +61,7 @@ scipy==1.15.2
 shapely==2.1.0
 six==1.17.0
 smmap==5.0.2
+statsmodels==0.14.4
 streamlit==1.44.1
 sympy==1.13.3
 tenacity==9.1.2
