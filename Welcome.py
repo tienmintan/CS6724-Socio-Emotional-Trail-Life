@@ -31,26 +31,23 @@ st.markdown("""
 - ✨ **Trail Magic Maps**: Acts of kindness, by location and per mile  
 - 📊 **Best Campsites**: The most and least enjoyable places to rest  
 - 🔄 **Direction Matters**: How NOBO vs SOBO hikers experience the trail differently  
+- and MORE!
 """)
 
-# Preview Thumbnails or Example Visuals
-col3, col4 = st.columns(2)
-with col3:
-    st.image("emotion_map_thumn.png", caption="Trail Magic along the way", use_container_width=True)
-with col4:
-    st.image("inter_dist.png", caption="Social interactions distribution", use_container_width=True)
 
 # Project Description Section
 st.markdown("---")
-cont1 = st.container()
-cont1.header("Project Description")
+st.markdown("<h2 style='text-align: center;'>📘 Project Description</h2>", unsafe_allow_html=True)
 
 cont2 = st.container(border=True)
 with cont2:
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image("https://images.unsplash.com/photo-1558483754-4618fc25fe5e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", use_container_width=True)
+        st.image(
+            "https://images.unsplash.com/photo-1558483754-4618fc25fe5e?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", 
+            use_container_width=True
+        )
 
     with col2:
         st.markdown(
