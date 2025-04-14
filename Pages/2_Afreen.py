@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import pandas as pd
+import os
 
 st.set_page_config(
     page_title="Visualizations",  
@@ -31,12 +32,36 @@ with tabs[0]:
             map_html = file.read()
         components.html(map_html, height=600, scrolling=True)
 
+        st.markdown(
+        """
+        <div style="margin-top:20px; padding:12px 16px; background-color:#2c2f33; border-radius:10px; color:white; font-size:14px; width: 300px;">
+            <div style="font-weight:600; font-size:15px; margin-bottom:8px;">Marker Legend</div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:20px; height:12px; background-color:skyblue; margin-right:10px;"></span>
+                Most Enjoyable
+            </div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:20px; height:12px; background-color:red; margin-right:10px;"></span>
+                Least Enjoyable
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     with col2:
         with st.container(border=True):
             st.subheader("Map Explanation:")
             st.write("This map displays the 3 best and worst 3 campsites, hostels, or shelters to visit on the Appalachian trail. Based on the emotional sentiment of journal entries recorded by hikers, the locations were measured and ranked by state for their total joy and negativity.")
 
             st.subheader("Key Insights:")
+            st.write("Zoom into the map and click on the markers to see the worst locations, denoted by the red markers, and the best locations, denoted by the blue markers.")
+            st.markdown("""
+            -  West Virginia does not have any location with a higher positive or "enjoyable" weight, so it only has no good visitation sites. This shows there is a need for better campsites or shelters within the state for hikers.
+            - 
+            """)
+            
+            st.subheader("Use Cases:")
             st.write("Zoom into the map and click on the markers to see the worst locations, denoted by the red markers, and the best locations, denoted by the blue markers. West Virginia only had one location that had a higher positive weight, so it only has one good visitation site. This shows there is a need for better campsites or shelters within the state for hikers.")
 
 
@@ -85,6 +110,32 @@ with tabs[3]:
             map_html = file.read()
         components.html(map_html, height=600, scrolling=True)
 
+        st.markdown(
+        """
+        <div style="margin-top:20px; padding:12px 16px; background-color:#2c2f33; border-radius:10px; color:white; font-size:14px; width: 300px;">
+            <div style="font-weight:600; font-size:15px; margin-bottom:8px;">Sentiment Legend</div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:blue; border-radius:50%; margin-right:10px;"></span>
+                Sadness
+            </div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:green; border-radius:50%; margin-right:10px;"></span>
+                Disgust
+            </div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:orange; border-radius:50%; margin-right:10px;"></span>
+                Anger
+            </div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:red; border-radius:50%; margin-right:10px;"></span>
+                Fear
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+
     with col2:
         with st.container(border=True):
             st.subheader("Map Explanation:")
@@ -103,6 +154,31 @@ with tabs[4]:
             map_html = file.read()
         components.html(map_html, height=600, scrolling=True)
 
+        st.markdown(
+        """
+        <div style="margin-top:20px; padding:12px 16px; background-color:#2c2f33; border-radius:10px; color:white; font-size:14px; width: 300px;">
+            <div style="font-weight:600; font-size:15px; margin-bottom:8px;">Sentiment Legend</div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:blue; border-radius:50%; margin-right:10px;"></span>
+                Sadness
+            </div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:green; border-radius:50%; margin-right:10px;"></span>
+                Disgust
+            </div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:orange; border-radius:50%; margin-right:10px;"></span>
+                Anger
+            </div>
+            <div style="margin:4px 0;">
+                <span style="display:inline-block; width:12px; height:12px; background-color:red; border-radius:50%; margin-right:10px;"></span>
+                Fear
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     with col2:
         with st.container(border=True):
             st.subheader("Map Explanation:")
@@ -111,7 +187,7 @@ with tabs[4]:
             st.subheader("Key Insights:")
             st.write("Zoom into the map to view the individual emotion markers. Hovering over a marker will provide which emotion it corresponds to since the trail is densely packed with markerts. The most common negative emotion expressed on the trail seems to be fear, with sadness as a close second.")
 
-with tabs[4]:
+with tabs[5]:
     st.header("trying to display dataframe")
     df = pd.read_csv('CLEANED_CS6724_data_2013_2023.csv')
     st.write("### Dataset Header")
