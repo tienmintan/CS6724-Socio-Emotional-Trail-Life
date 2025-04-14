@@ -58,7 +58,6 @@ with cont2:
     with col2:
         st.markdown(
         """
-        <div style="font-size: 20px;">
         Emotional well-being is vital for individuals experiencing a life transition journey, 
         as it helps them maintain resilience, stay focused, and inform their decision-making. 
 
@@ -71,7 +70,6 @@ with cont2:
         This project explores how social connections relate to hikers' emotional states amidst the uncertainties 
         of a dynamic socio-technical-natural system by leveraging AI-driven techniques and machine learning 
         algorithms on large-scale data.
-        </div>
         """, unsafe_allow_html=True
     )
 
