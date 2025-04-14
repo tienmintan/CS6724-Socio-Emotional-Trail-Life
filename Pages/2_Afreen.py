@@ -175,10 +175,20 @@ with tabs[3]:
     with col2:
         with st.container(border=True):
             st.subheader("Map Explanation:")
-            st.write("This map displays the negative emotions that have been recorded on the trail. It specifically maps sadess, disgust, anger, and fear, which were expressed via journal entries from the hikers.")
+            st.write("This map displays the negative emotions that have been recorded on the trail. It specifically maps sadess, disgust, anger, and fear, which were expressed via journal entries from the hikers. Zoom into the map to view the individual emotion markers. Hovering over a marker will provide which emotion it corresponds to since the trail is densely packed with markers. NOBO refers to north bound hikers.")
 
             st.subheader("Key Insights:")
-            st.write("Zoom into the map to view the individual emotion markers. Hovering over a marker will provide which emotion it corresponds to since the trail is densely packed with markerts. The most common negative emotion expressed on the trail seems to be fear, with sadness as a close second.")
+            st.markdown("""
+            - The most common negative emotion expressed on the trail seems to be fear.
+            - There are clusters of sadness in the southern part of the trail. 
+            - There is a lack of disgust and anger across the trail.   
+            """)
+            
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - Hikers can mentally prepare for more emotionally intensive areas of the trail. 
+            - Hikers can aniticipate challenginering areas of the trail. 
+            """) 
 
 
 
@@ -218,10 +228,20 @@ with tabs[4]:
     with col2:
         with st.container(border=True):
             st.subheader("Map Explanation:")
-            st.write("This map displays the negative emotions that have been recorded on the trail. It specifically maps sadess, disgust, anger, and fear, which were expressed via journal entries from the hikers.")
+            st.write("This map displays the negative emotions that have been recorded on the trail. It specifically maps sadess, disgust, anger, and fear, which were expressed via journal entries from the hikers. Zoom into the map to view the individual emotion markers. Hovering over a marker will provide which emotion it corresponds to since the trail is densely packed with markers. SOBO refers to south bound hikers.")
 
             st.subheader("Key Insights:")
-            st.write("Zoom into the map to view the individual emotion markers. Hovering over a marker will provide which emotion it corresponds to since the trail is densely packed with markerts. The most common negative emotion expressed on the trail seems to be fear, with sadness as a close second.")
+            st.markdown("""
+            - The most common negative emotions expressed on the trail are fear and sadness.
+            - In comparison to the NOBO map, the emotions are much more varied.  
+            - There is less amount of fearness among SOBO hikers than NOBO hikers.  
+            """)
+            
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - Hikers can mentally prepare for more emotionally intensive areas of the trail. 
+            - Hikers can aniticipate challenginering areas of the trail. 
+            """) 
 
 with tabs[5]:
     st.header("trying to display dataframe")
