@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import pandas as pd
 
 st.set_page_config(
     page_title="Visualizations",  
@@ -11,16 +12,19 @@ st.set_page_config(
 st.title("Visualizations Made By Afreen")  
 
 tab_titles = [
-    "Best and Worst Spots in Each State",
+    "Most and Least Enjoyable Locations of the Trail in Each State",
     "Trail Magic Occurences by State",
-    "Negative Emotions Across the Trail"
+    "Trail Magic Occurences per Mile in Each State",
+    "Negative Emotions of NOBO Hikers Across the Trail",
+    "Negative Emotions of SOBO Hikers Across the Trail",
+    "dataset trail"
 ]
 
 tabs = st.tabs(tab_titles)
 
 
 with tabs[0]:
-    st.header("Best and Worst Spots in Each State📍")
+    st.header("Most and Least Enjoyable Locations of the Trail in Each State📍")
     col1, col2 = st.columns([2,1])
     with col1:
         with open("best and worst spots.html", "r", encoding="utf-8") as file:
@@ -56,10 +60,28 @@ with tabs[1]:
 
 
 with tabs[2]:
-    st.header("Negative Emotions Across the Trail 👎")
+    st.header("Trail Magic Occurences per Mile in Each State 💫")
     col1, col2 = st.columns([2,1])
     with col1:
-        with open("negative emotions map.html", "r", encoding="utf-8") as file:
+        with open("trail_magic_per_mile_map.html", "r", encoding="utf-8") as file:
+            map_html = file.read()
+        components.html(map_html, height=600, scrolling=True)
+
+    with col2:
+        with st.container(border=True):
+            st.subheader("Map Explanation:")
+            st.write("This map displays how much trail magic occurs in each of the 14 states on the trail. Trail magic refers to acts of kindness towards hikers, including finding food or shelters with the help of strangers or other hikers.")
+
+            st.subheader("Key Insights:")
+            st.write("Zoom into the map to view which states contain the most trail magic. The darker the blue, the more magical the state is! Virginia has the most trail magic, while West Virginia has the least. This corresponds to our first map with WV's lack of good locations.")
+
+
+
+with tabs[3]:
+    st.header("Negative Emotions of NOBO Hikers Across the Trail 👎⬆️")
+    col1, col2 = st.columns([2,1])
+    with col1:
+        with open("neg_emotions_markers_NOBO.html", "r", encoding="utf-8") as file:
             map_html = file.read()
         components.html(map_html, height=600, scrolling=True)
 
@@ -70,3 +92,28 @@ with tabs[2]:
 
             st.subheader("Key Insights:")
             st.write("Zoom into the map to view the individual emotion markers. Hovering over a marker will provide which emotion it corresponds to since the trail is densely packed with markerts. The most common negative emotion expressed on the trail seems to be fear, with sadness as a close second.")
+
+
+
+with tabs[4]:
+    st.header("Negative Emotions of SOBO Hikers Across the Trail 👎⬇️")
+    col1, col2 = st.columns([2,1])
+    with col1:
+        with open("neg_emotions_markers_SOBO.html", "r", encoding="utf-8") as file:
+            map_html = file.read()
+        components.html(map_html, height=600, scrolling=True)
+
+    with col2:
+        with st.container(border=True):
+            st.subheader("Map Explanation:")
+            st.write("This map displays the negative emotions that have been recorded on the trail. It specifically maps sadess, disgust, anger, and fear, which were expressed via journal entries from the hikers.")
+
+            st.subheader("Key Insights:")
+            st.write("Zoom into the map to view the individual emotion markers. Hovering over a marker will provide which emotion it corresponds to since the trail is densely packed with markerts. The most common negative emotion expressed on the trail seems to be fear, with sadness as a close second.")
+
+with tabs[4]:
+    st.header("trying to display dataframe")
+    df = pd.read_csv('CLEANED_CS6724_data_2013_2023.csv')
+    st.write("### Dataset Header")
+    st.write(df.head()) 
+
