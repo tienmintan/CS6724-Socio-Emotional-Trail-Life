@@ -34,6 +34,12 @@ st.markdown("""
 - and MORE!
 """)
 
+# Preview Thumbnails or Example Visuals with same height
+col3, col4 = st.columns(2)
+with col3:
+    st.image("emotion_map_thumb.png", caption="Emotions along the way")
+with col4:
+    st.image("social_inter.png", caption="Social interactions along the way")
 
 # Project Description Section
 st.markdown("---")
