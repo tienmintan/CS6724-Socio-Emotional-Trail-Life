@@ -34,7 +34,7 @@ tab_titles = [
 tabs = st.tabs(tab_titles)
 
 with tabs[0]:
-    st.header("Hiker Community Movements by Year")
+    st.header("Hiker Community Movements")
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown("## Select Year and Group")
@@ -79,25 +79,28 @@ with tabs[0]:
 
 
 with tabs[1]:
-    st.header("Test")
+    st.header("Hiker Community Statistics\n")
 
 
     # Define plot files with optional widths
     plots = [
-         ("Number of Hikers in Each Community", "plots/hiker_community_sizes.png", 1000),
-        ("Number of Communities per Year", "plots/num_communities_per_year.png", 800),
-        ("Distribution of Hikers per Community", "plots/hikers_per_community_boxplot.png", 800),
-        ("Distribution of Community Activeness", "plots/community_activeness_boxplot.png", 800),
-        ("Average Activeness Over Time", "plots/activeness_trend.png", 800),
+         ("Number of Hikers in Each Community", "plots/hiker_community_sizes.png", 2000),
+        ("Number of Communities per Year", "plots/num_communities_per_year.png", 2000),
+        ("Distribution of Hikers per Community", "plots/hikers_per_community_boxplot.png", 2000),
+        ("Distribution of Community Activeness", "plots/community_activeness_boxplot.png", 2000),
+        ("Average Activeness Over Time", "plots/activeness_trend.png", 2000),
        
     ]
 
     # Display all visualizations
     for title, path, width in plots:
-        st.header(title)
-        if os.path.exists(path):
-            st.image(Image.open(path), width=width)
-        else:
-            st.warning(f"Image not found: {path}")
+        _, middle, _ = st.columns([1, 2, 1]) 
+        with middle:
+            st.markdown(f"<h3 style='text-align: center;'>{title}</h3>", unsafe_allow_html=True)
+            if os.path.exists(path):
+                st.image(Image.open(path), width=width)
+            else:
+                st.warning(f"Image not found: {path}")
+            st.markdown(f"<h3 style='text-align: center;'>\n\n\n</h3>", unsafe_allow_html=True)
 
 
