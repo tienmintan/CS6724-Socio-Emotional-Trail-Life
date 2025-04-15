@@ -94,7 +94,7 @@ with tabs[1]:
 
     # Display all visualizations
     for title, path, width in plots:
-        _, middle, _ = st.columns([1, 2, 1]) 
+        _, middle, _ = st.columns([1, 5, 1]) 
         with middle:
             st.markdown(f"<h3 style='text-align: center;'>{title}</h3>", unsafe_allow_html=True)
             if os.path.exists(path):
