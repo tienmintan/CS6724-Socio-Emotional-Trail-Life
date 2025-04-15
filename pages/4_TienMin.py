@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from PIL import Image
 import os
+import plotly.express as px
 
 
 st.set_page_config(
@@ -81,24 +82,118 @@ with tabs[0]:
 with tabs[1]:
     st.header("Hiker Community Statistics\n")
 
+    # === Load data ===
+    df = pd.read_csv("CLEANED_CS6724_data_2013_2023.csv")
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    df = df[df["date"].notna()]
+    df["normalized_name"] = df["Hiker trail name"].astype(str).str.strip().str.lower().str.replace(r"[^a-z]", "", regex=True)
 
-    plots = [
-         ("Number of Hikers in Each Community", "plots/hiker_community_sizes.png", 2000),
-        ("Number of Communities per Year", "plots/num_communities_per_year.png", 2000),
-        ("Distribution of Hikers per Community", "plots/hikers_per_community_boxplot.png", 2000),
-        ("Distribution of Community Activeness", "plots/community_activeness_boxplot.png", 2000),
-        ("Average Activeness Over Time", "plots/activeness_trend.png", 2000),
-       
-    ]
+    with open("cleaned_yearly_hiker_relations.json") as f:
+        cleaned_yearly_hiker_relations = json.load(f)
 
-    for title, path, width in plots:
-        _, middle, _ = st.columns([1, 5, 1]) 
-        with middle:
-            st.markdown(f"<h3 style='text-align: center;'>{title}</h3>", unsafe_allow_html=True)
-            if os.path.exists(path):
-                st.image(Image.open(path), width=width)
-            else:
-                st.warning(f"Image not found: {path}")
-            st.markdown(f"<h3 style='text-align: center;'>\n\n\n</h3>", unsafe_allow_html=True)
+    # Containers
+    community_sizes_by_year = {}
+    community_count_by_year = {}
+    community_activeness_by_year = {}
 
+    # Calculate community data
+    years = sorted([str(y) for y in cleaned_yearly_hiker_relations.keys()])
+    for year in years:
+        year_int = int(year)
+        relations = cleaned_yearly_hiker_relations[year]
 
+        G = nx.Graph([(h, m) for h, ms in relations.items() for m in ms])
+        partition = community_louvain.best_partition(G, random_state=42)
+
+        community_hikers = defaultdict(set)
+        for hiker, cid in partition.items():
+            community_hikers[cid].add(hiker)
+
+        sizes = [len(members) for members in community_hikers.values()]
+        community_sizes_by_year[year] = sizes
+        community_count_by_year[year] = len(sizes)
+
+        df_year = df[df["date"].dt.year == year_int].copy()
+        community_activeness = []
+        for cid, hikers in community_hikers.items():
+            entry_count = df_year[df_year["normalized_name"].isin(hikers)].shape[0]
+            community_activeness.append(entry_count)
+
+        community_activeness_by_year[year] = community_activeness
+
+    # 1. Number of Communities per Year
+    num_communities = [community_count_by_year[y] for y in years]
+    fig1 = px.bar(
+        x=years,
+        y=num_communities,
+        labels={'x': 'Year', 'y': '# of Communities'},
+        title="Number of Communities per Year"
+    )
+    st.plotly_chart(fig1, use_container_width=True)
+
+    # 2. Distribution of Community Sizes
+    data2 = [(y, size) for y in years for size in community_sizes_by_year[y]]
+    df_size = pd.DataFrame(data2, columns=["Year", "Community Size"])
+    fig2 = px.box(
+        df_size,
+        x="Year",
+        y="Community Size",
+        title="Distribution of Community Sizes per Year"
+    )
+    st.plotly_chart(fig2, use_container_width=True)
+
+    # 3. Distribution of Community Activeness
+    data3 = [(y, act) for y in years for act in community_activeness_by_year[y]]
+    df_act = pd.DataFrame(data3, columns=["Year", "Journal Entries"])
+    fig3 = px.box(
+        df_act,
+        x="Year",
+        y="Journal Entries",
+        title="Community Activeness per Year"
+    )
+    st.plotly_chart(fig3, use_container_width=True)
+
+    # 4. Mean Activeness Over Time
+    df_avg_activeness = pd.DataFrame({
+        "Year": [str(y) for y in years],
+        "Average Journal Entries": [np.mean(community_activeness_by_year[y]) for y in years]
+    })
+
+    df_avg_activeness["Year"] = pd.to_numeric(df_avg_activeness["Year"])
+
+    df_avg_activeness = df_avg_activeness.sort_values("Year")
+
+    fig = px.line(
+        df_avg_activeness,
+        x="Year",
+        y="Average Journal Entries",
+        markers=True,
+        title="Average Community Activeness Over Time"
+    )
+
+    fig.update_traces(mode="lines+markers", line=dict(color="lightblue"))
+    fig.update_layout(
+        xaxis=dict(title="Year"),
+        yaxis=dict(title="Average Journal Entries")
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
+    # 5. Hikers in Each Community
+    data5 = []
+    for year in years:
+        sizes = community_sizes_by_year[year]
+        for i, size in enumerate(sizes):
+            data5.append({"Year": int(year), "Group": i, "Size": size})
+
+    df_sizes = pd.DataFrame(data5)
+    df_sizes["Label"] = df_sizes["Year"].astype(str) + "_G" + df_sizes["Group"].astype(str)
+    fig5 = px.bar(
+        df_sizes.sort_values("Size", ascending=False),
+        x="Label",
+        y="Size",
+        title="Number of Hikers in Each Community",
+        labels={"Label": "Community (Year_GroupID)", "Size": "# of Hikers"}
+    )
+    fig5.update_layout(xaxis_tickangle=45)
+    st.plotly_chart(fig5, use_container_width=True)
