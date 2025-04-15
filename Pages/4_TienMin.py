@@ -1,15 +1,17 @@
 import streamlit as st
+st.set_page_config(page_title="Hiker Community Animations", layout="wide")
 
-st.set_page_config(
-    page_title="Visualizations",  
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# st.set_page_config(
+#     page_title="Visualizations",  
+#     page_icon="📊",
+#     layout="wide",
+#     initial_sidebar_state="expanded"
+# )
 
-st.title("Visualizations Made By Tien Man")  
+st.title("Visualizations")  
 
-import streamlit as st
+
+
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, FFMpegWriter
 import matplotlib.cm as cm
@@ -23,11 +25,16 @@ from geopy.distance import geodesic
 from scipy.interpolate import interp1d
 from io import BytesIO
 import tempfile
+import json
 
 # Your cleaned_yearly_hiker_relations and df should be preloaded
 # Example:
 df = pd.read_csv("CLEANED_CS6724_data_2013_2023.csv")
-cleaned_yearly_hiker_relations = pd.read_csv("cleaned_yearly_hiker_relations.csv")
+df["date"] = pd.to_datetime(df["date"], errors="coerce")
+
+# Load cleaned CSV
+with open("cleaned_yearly_hiker_relations.json", "r") as f:
+    cleaned_yearly_hiker_relations = json.load(f)
 
 def filter_large_jumps(df, threshold_km=300):
     if len(df) < 2:
@@ -146,3 +153,13 @@ def generate_animation(year, df, cleaned_yearly_hiker_relations):
         video_buffer.write(f.read())
     video_buffer.seek(0)
     return video_buffer
+
+st.title("🎞️ Appalachian Trail Community Movements by Year")
+
+year_options = sorted(cleaned_yearly_hiker_relations.keys())
+selected_year = st.selectbox("Select a year", options=year_options)
+
+if st.button("Generate Animation"):
+    with st.spinner(f"Rendering animation for {selected_year}..."):
+        video = generate_animation(selected_year, df, cleaned_yearly_hiker_relations)
+        st.video(video)
