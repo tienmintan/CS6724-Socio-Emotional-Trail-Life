@@ -82,7 +82,6 @@ with tabs[1]:
     st.header("Hiker Community Statistics\n")
 
 
-    # Define plot files with optional widths
     plots = [
          ("Number of Hikers in Each Community", "plots/hiker_community_sizes.png", 2000),
         ("Number of Communities per Year", "plots/num_communities_per_year.png", 2000),
@@ -92,7 +91,6 @@ with tabs[1]:
        
     ]
 
-    # Display all visualizations
     for title, path, width in plots:
         _, middle, _ = st.columns([1, 5, 1]) 
         with middle:
