@@ -41,6 +41,14 @@ with tabs[0]:
                 **Sev** is the top trail for **Socialness Group 2** (Couple, Family, Friend, Pet),  
                 while **Valley Forge** leads for **Group 4** (Fest, Festival, Event, Community, Trail Town).
                 """)
+            
+            st.subheader("Use Cases:")
+            st.write("""  
+                - An outdoor brand or guided tour company wants to design social experience-based hiking packages, they can offer curated group hiking experiences on Fulltilt, which ranks highest for social interactions like conversation, meeting new people, and trail magic. 
+                - Socially motivated hikers are recommended to use the heatmap data to identify and suggest hotspot areas for scenic breaks, pet rest areas, or couple-friendly lookout points.  
+                - A regional tourism board wants to drive foot traffic and engagement through local events and host community events around Valley Forge, the top trail for keywords like fest, event, and community.
+ 
+                """)
 
 
 with tabs[1]:
@@ -64,6 +72,17 @@ with tabs[1]:
                 - This suggests that social interactions peak during the summer, making it the best time for activities like hiking.
  
                 """)
+            st.subheader("Use Cases:")
+            st.write("""  
+                - An outdoor gear or apparel brand wants to launch a targeted summer campaign, •  during June and July, capitalizing on the peak in social interactions and trail usage. 
+                - A parks department wants to maximize turnout for guided hikes or trail events, can schedule community hikes during June and July, aligning with peak interaction periods. 
+ 
+                """)
+            
+
+          
+
+            
 
 
 with tabs[2]:
@@ -85,5 +104,11 @@ with tabs[2]:
                 - Social interactions peak during the summer, making it the best time for activities like hiking.  
                 - Interactions start increasing from April (spring), peaking in June & July (summer). A decline begins in September, reaching the lowest levels in December & January (winter).
                 - Couples have the highest interaction levels, followed by families. Fest has the lowest social interaction levels across all months.
+ 
+                """)
+            st.subheader("Use Cases:")
+            st.write("""  
+                - A travel agency or hiking tour group wants to cater to couples and families looking for outdoor getaways, can design “Spring to Summer Romance” and “Family Trail Time” packages starting in April, peaking with special offers in June and July.
+                - An app developer wants to create a personalized user experience that adapts to social trends, from April to July, highlight trails that attract couples or families and push community features (e.g., create hike groups, share experiences). 
  
                 """)
