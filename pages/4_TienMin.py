@@ -10,7 +10,7 @@ import re
 import networkx as nx
 from collections import defaultdict
 from pathlib import Path
-import community as community_louvain
+import community.community_louvain as community_louvain
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PIL import Image
