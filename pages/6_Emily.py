@@ -61,9 +61,9 @@ tabs = st.tabs([
 # ----------------------------------------------------------------
 # 4) DATA LOADING & PREPROCESSING
 # ----------------------------------------------------------------
-file_path_top_10            = '/Users/emilyelkins/Documents/SPRING 2025/PYTHON/CS6724-Socio-Emotional-Trail-Life/emilyelkins/2025-03-25_Top10Pct.xlsx'
-file_path_emotions          = '/Users/emilyelkins/Documents/SPRING 2025/PYTHON/CS6724-Socio-Emotional-Trail-Life/emilyelkins/Emotions Visualization Chart.xlsx'
-file_path_top_10_extraction = '/Users/emilyelkins/Documents/SPRING 2025/PYTHON/CS6724-Socio-Emotional-Trail-Life/emilyelkins/Top Ten Percent Data Extraction.xlsx'
+file_path_top_10            = '2025-03-25_Top10Pct.xlsx'
+file_path_emotions          = 'Emotions Visualization Chart.xlsx'
+file_path_top_10_extraction = 'Top Ten Percent Data Extraction.xlsx'
 
 df_top_10            = pd.read_excel(file_path_top_10, sheet_name='Top_10pct_Miles_2021-23', engine='openpyxl')
 df_emotions          = pd.read_excel(file_path_emotions, engine='openpyxl')
