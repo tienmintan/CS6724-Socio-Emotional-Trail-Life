@@ -291,123 +291,285 @@ def get_top10_props(yr):
 # 1) Individual Journeys
 with tabs[0]:
     st.header("👣 Individual Journeys (Anonymized)")
-    st.markdown("""
-    **What you see:**  
-    A day‑by‑day line indicating each hiker’s emotions based on the date entered.  
-    - **X‑axis (Date):** Daily progress  
-    - **Y‑axis (Emotion):** From joy (top) to anger (bottom)  
-    - **Dashed lines:** Mark three hiking phases (early, middle, final push)
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown("""
+        **What you see:**  
+        A day‑by‑day line indicating each hiker’s emotions based on the date entered.  
+        - **X‑axis (Date):** Daily progress  
+        - **Y‑axis (Emotion):** From joy (top) to anger (bottom)  
+        - **Dashed lines:** Mark three hiking phases (early, middle, final push)
 
-    **Trip‑planning scenario:**  
-    > *Imagine you’re planning a 25‑day thru‑hike and worried about mid‑trail slumps.  
-    > Check “Hiker 3” to see when their joy dipped in Phase 2 — you can  
-    > schedule a rest day or extra resupply at that point.*
+        **Trip‑planning scenario:**  
+        > *Imagine you’re planning a 25‑day thru‑hike and worried about mid‑trail slumps.  
+        > Check “Hiker 3” to see when their joy dipped in Phase 2 — you can  
+        > schedule a rest day or extra resupply at that point.*
 
-    **Key insights:**  
-    - Spot early‑phase fear spikes to pack extra comfort foods.  
-    - Celebrate mid‑trail joy peaks with planned photo stops.  
-    - Prepare mentally for end‑section fatigue before you hit it.
-    """)
-    dfy = df_top_10[df_top_10['date'].dt.year == selected_year]
-    for anon in sorted(dfy['hiker_anon'].unique()):
-        dfo = dfy[dfy['hiker_anon'] == anon]
-        st.subheader(anon)
-        st.plotly_chart(create_hiker_graph(dfo, anon, selected_year), use_container_width=True)
+        **Key insights:**  
+        - Spot early‑phase fear spikes to pack extra comfort foods.  
+        - Celebrate mid‑trail joy peaks with planned photo stops.  
+        - Prepare mentally for end‑section fatigue before you hit it.
+        """)
+        dfy = df_top_10[df_top_10['date'].dt.year == selected_year]
+        for anon in sorted(dfy['hiker_anon'].unique()):
+            dfo = dfy[dfy['hiker_anon'] == anon]
+            st.subheader(anon)
+            st.plotly_chart(create_hiker_graph(dfo, anon, selected_year), use_container_width=True)
+    
+    with col2:
+        with st.container(border=True):
+            st.subheader("Graph Explanation:")
+            st.write("""
+            - **What the Graph Shows:** A timeline tracking Hiker 11’s daily emotional fluctuations during their 2022 Appalachian Trail hike, using journal data..
+            - **X-axis (Date):** Represents the hiker’s progression over time, from June through October.
+            - **Y-axis (Emotion):** Plots emotion categories, ranging from high-energy positive emotions (e.g., surprise) to low-energy negative emotions (e.g., fear).
+            - **Dashed Lines:** Indicate three key trail segments — early hike, mid-hike, and final stretch — to contextualize emotional highs/lows within the trail journey.
+            """)
+
+            st.subheader("Key Insights:")
+            st.markdown("""
+            - **Early Hike Caution:** Emotion logs reveal more fear and uncertainty in the early section of the hike, a common trend that could suggest mental preparation challenges.
+            - **Mid-Hike Neutrality or Gaps:** Some hikers, like Hiker 11, may experience emotional flatlines or logging fatigue mid-hike, possibly due to physical weariness or lack of journaling motivation.
+            - **End-Phase Silence or Anticipation:** Emotional logs taper off near the final leg, which could indicate exhaustion, determination, or fewer reflective entries.
+            """)
+            
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - **Trail Planning:** Hikers can use emotional trend data to prepare for psychological slumps, adding rest days or treats during low points (e.g., Phase 2 dips).
+            - **Gear & Supply Strategy:** Pack extra comfort food or motivational gear (music, photos, etc.) during expected stress periods.
+            - **Hiker Support Systems:** Friends or family tracking a hiker’s journey can offer targeted encouragement or check-ins during likely emotional downturns.
+            - **Mental Health Checkpoints:** Trail organizations can use emotional data to identify which sections of the trail are most emotionally taxing and provide support resources accordingly.
+            """)
 
 
 # 2) Monthly Dominant Emotions
 with tabs[1]:
     st.header("📊 Monthly Dominant Emotions")
-    st.markdown("""
-    **What you see:**  
-    A bar for each month showing the *single* most common emotion among all hikers.
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown("""
+        **What you see:**  
+        A bar for each month showing the *single* most common emotion among all hikers.
 
-    **Trip‑planning scenario:**  
-    > *You want to start in May but are nervous about unpredictable weather.  
-    > May’s dominant emotion is fear (red)—so plan for rain‑ready gear and  
-    > consider an earlier start in April when joy was higher.*
+        **Trip‑planning scenario:**  
+        > *You want to start in May but are nervous about unpredictable weather.  
+        > May’s dominant emotion is fear (red)—so plan for rain‑ready gear and  
+        > consider an earlier start in April when joy was higher.*
 
-    **Key insights:**  
-    - Weather‑linked fear spikes in spring/fall.  
-    - Summer months show consistent joy — ideal for first‑timers.  
-    - 2022 dips suggest lower trail traffic — quieter, but less on‑trail support.
-    """)
-    st.plotly_chart(get_monthly_emotion_trends(selected_year), use_container_width=True)
+        **Key insights:**  
+        - Weather‑linked fear spikes in spring/fall.  
+        - Summer months show consistent joy — ideal for first‑timers.  
+        - 2022 dips suggest lower trail traffic — quieter, but less on‑trail support.
+        """)
+        st.plotly_chart(get_monthly_emotion_trends(selected_year), use_container_width=True)
+    with col2:
+        with st.container(border=True):
+            st.subheader("Graph Explanation:")
+            st.write("""
+            - **What the Graph Shows:** A bar chart displaying the most common emotion among hikers for each month in 2022. Bars are color-coded by emotion and sized by frequency.
+            - **X-axis (Date):** Each month from March to November 2022.
+            - **Y-axis (Emotion Count):** Number of times the dominant emotion was logged by hikers in that month.
+            - **Color Coding:** Yellow = Joy, Green = Surprise, Red = Fear, Gray = Sadness.
+            """)
 
+            st.subheader("Key Insights:")
+            st.markdown("""
+            - **Fear and Sadness Bracket the Season:** These emotions are most common at the start (spring) and end (fall) of the hiking season, possibly due to cold or unpredictable weather.
+            - **Mid-Summer Joy Peak:** Joy dominates during June and July — ideal for first-time hikers looking for a more emotionally uplifting trail experience.
+            - **May Spike in Fear:** May 2022 had the highest fear count, suggesting hikers faced early weather, gear, or trail-readiness concerns.
+            - **Lower Counts Across 2022:** Emotion counts suggest fewer journal entries and possibly fewer hikers overall, which may mean quieter trails with less peer support.
+            """)
+
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - **Trip Timing Optimization:** Plan hikes for joyful months like July to enhance morale and overall experience.
+            - **Packing for Emotional Resilience:** Include rain-ready gear and comfort supplies in spring/fall when fear and sadness are more common.
+            - **Mental Preparedness:** Anticipate emotional dips in colder months and prep strategies like journaling prompts or mindfulness routines.
+            - **Trail Resource Planning:** Trail organizations can use monthly emotion trends to time support services (e.g., morale boosts or check-ins) where they’re most needed.
+            """)
 
 # 3) Overall Emotion Proportions
 with tabs[2]:
     st.header("📈 Overall Emotion Proportions")
-    st.markdown("""
-    **What you see:**  
-    A summary of each emotion’s share across the entire year.
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown("""
+        **What you see:**  
+        A summary of each emotion’s share across the entire year.
 
-    **Trip‑planning scenario:**  
-    > *You’re deciding whether to hike solo or in a group.  
-    > If fear accounts for 40% and joy only 30%, you might prefer a buddy  
-    > until you’re more comfortable with the trail.*
+        **Trip‑planning scenario:**  
+        > *You’re deciding whether to hike solo or in a group.  
+        > If fear accounts for 40% and joy only 30%, you might prefer a buddy  
+        > until you’re more comfortable with the trail.*
 
-    **Key insights:**  
-    - A high fear proportion signals the importance of community support.  
-    - Balanced joy/fear encourages mid‑trail morale boosts like summit parties.  
-    - Low disgust/anger shows overall positive hiker sentiment.
-    """)
-    st.plotly_chart(get_emotion_proportions(selected_year), use_container_width=True)
+        **Key insights:**  
+        - A high fear proportion signals the importance of community support.  
+        - Balanced joy/fear encourages mid‑trail morale boosts like summit parties.  
+        - Low disgust/anger shows overall positive hiker sentiment.
+        """)
+        st.plotly_chart(get_emotion_proportions(selected_year), use_container_width=True)
 
+    with col2:
+        with st.container(border=True):
+            st.subheader("Graph Explanation:")
+            st.write("""
+            - **What the Graph Shows:** A bar chart summarizing the proportion of each recorded emotion across the entire year based on hikers’ journal entries.
+            - **X-axis (Emotion):** Lists the six emotions tracked: fear, joy, surprise, anger, sadness, and disgust.
+            - **Y-axis (Proportion):** Represents the percentage share of each emotion relative to the total emotional records for the year.
+            - **Color Coding:** Each bar is color-coded by emotion, with yellow for joy, gray for fear, green for surprise, blue tones for anger and sadness, and orange for disgust.
+            """)
+
+            st.subheader("Key Insights:")
+            st.markdown("""
+            - **Fear and Joy Dominate Equally:** Each accounts for just under 30% of all recorded emotions, indicating a trail experience that’s both thrilling and mentally demanding.
+            - **Surprise is a Strong Third:** At 15.65%, surprise suggests that unexpected moments — whether positive or challenging — are a frequent part of the trail.
+            - **Low Negative Emotion Proportions:** Anger (11.56%), sadness (8.84%), and especially disgust (4.08%) are relatively rare, suggesting overall positive sentiment among hikers.
+            - **Community Value Highlighted:** The balance of joy and fear indicates the importance of support systems, morale events, and social interaction for hikers.
+            """)
+
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - **Group vs Solo Hike Planning:** If fear is high and joy is low, consider joining a group to boost emotional resilience — especially for first-timers.
+            - **Support Strategies:** Trail organizations can design initiatives like morale boosts, mid-trail celebrations, or check-ins to balance out fear spikes.
+            - **Mental Health Monitoring:** Use emotional proportions to benchmark against past years and assess the emotional well-being of the hiking community.
+            - **Onboarding New Hikers:** Communicate realistic emotional expectations (e.g., highs and lows are common) to better prepare new hikers mentally.
+            """)
 
 # 4) Emotions Proportion Over Time
 with tabs[3]:
     st.header("⏳ Emotions Proportion Over Time")
-    st.markdown("""
-    **What you see:**  
-    A stacked bar chart of emotion mixes month‑by‑month.
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown("""
+        **What you see:**  
+        A stacked bar chart of emotion mixes month‑by‑month.
 
-    **Trip‑planning scenario:**  
-    > *Planning a June start? Notice June has 50% joy, 20% fear, 15% surprise.  
-    > Pack extra sunscreen for those joyful sunny days and rain gear for the fearful 20%.*
+        **Trip‑planning scenario:**  
+        > *Planning a June start? Notice June has 50% joy, 20% fear, 15% surprise.  
+        > Pack extra sunscreen for those joyful sunny days and rain gear for the fearful 20%.*
 
-    **Key insights:**  
-    - Seasonal shifts (i.e. winter→fear, summer→joy).  
-    - Surprise peaks could align with wildlife sightings or trail events.  
-    - Use this to tailor mental‑health tactics month‑to‑month.
-    """)
-    st.plotly_chart(get_proportion_bar(selected_year), use_container_width=True)
+        **Key insights:**  
+        - Seasonal shifts (i.e. winter→fear, summer→joy).  
+        - Surprise peaks could align with wildlife sightings or trail events.  
+        - Use this to tailor mental‑health tactics month‑to‑month.
+        """)
+        st.plotly_chart(get_proportion_bar(selected_year), use_container_width=True)
+    with col2:
+        with st.container(border=True):
+            st.subheader("Graph Explanation:")
+            st.write("""
+            - **What the Graph Shows:** A stacked bar chart illustrating the month-by-month mix of hiker emotions throughout the year.
+            - **X-axis (Date):** Represents each month in 2022.
+            - **Y-axis (Proportion):** Displays the percentage of total emotional records attributed to each emotion within the month.
+            - **Color Coding:** Each emotion has a distinct color: joy (yellow), fear (gray), surprise (green), anger (blue), sadness (light blue), and disgust (orange).
+            """)
+
+            st.subheader("Key Insights:")
+            st.markdown("""
+            - **Seasonal Patterns:** Joy increases during summer (June–September), while fear and sadness are more prevalent in colder months like January and November.
+            - **Surprise Peaks:** Noticeable spikes in surprise appear in April, July, and September — possibly linked to events like wildlife sightings or unexpected trail moments.
+            - **Winter Fatigue Indicators:** January and November show higher shares of fear, anger, and sadness, suggesting a need for increased motivation and warmth during cold months.
+            - **Consistent Emotional Diversity:** Most months display a varied mix of emotions, reinforcing the mental complexity of long-distance hiking.
+            """)
+
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - **Trail Readiness Planning:** Hikers can select months with high joy and low fear (e.g., June or September) for more emotionally rewarding trips.
+            - **Mental Health Strategy:** Use this emotional map to align support tactics (like guided meditations, comfort food drops, or rest days) with known emotional trends.
+            - **Seasonal Event Planning:** Trail coordinators can align celebrations or wellness events with surprise or joy peaks for maximum morale impact.
+            - **Gear Optimization:** Prepare for fear-heavy months with extra protection (rain gear, comfort items) and travel in groups during emotionally challenging periods.
+            """)
 
 
 # 5) Emotions Count Over Time
 with tabs[4]:
     st.header("🔢 Emotions Count Over Time")
-    st.markdown("""
-    **What you see:**  
-    Raw counts of emotion-labeled entries each month.
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown("""
+        **What you see:**  
+        Raw counts of emotion-labeled entries each month.
 
-    **Trip‑planning scenario:**  
-    > *You’d rather hike in less‑crowded months to avoid overpacked shelters.  
-    > Notice February has only 10 entries vs July’s 200—ideal for solitude seekers.*
+        **Trip‑planning scenario:**  
+        > *You’d rather hike in less‑crowded months to avoid overpacked shelters.  
+        > Notice February has only 10 entries vs July’s 200—ideal for solitude seekers.*
 
-    **Key insights:**  
-    - Peak activity in summer → expect crowded campsites.  
-    - Off‑season dips show quieter trail but tougher weather.  
-    - Use counts to choose your comfort vs. solitude balance.
-    """)
-    st.plotly_chart(get_count_bar(selected_year), use_container_width=True)
+        **Key insights:**  
+        - Peak activity in summer → expect crowded campsites.  
+        - Off‑season dips show quieter trail but tougher weather.  
+        - Use counts to choose your comfort vs. solitude balance.
+        """)
+        st.plotly_chart(get_count_bar(selected_year), use_container_width=True)
+    with col2:
+        with st.container(border=True):
+            st.subheader("Graph Explanation:")
+            st.write("""
+            - **What the Graph Shows:** A stacked bar chart showing the raw number of journal entries tagged with each emotion by month in 2022.
+            - **X-axis (Date):** Monthly timeline from January through November 2022.
+            - **Y-axis (Emotion Count):** Total number of emotion-labeled entries recorded in each month.
+            - **Color Coding:** Each emotion is shown in a different color — joy (yellow), fear (gray), surprise (green), sadness (light blue), anger (blue), and disgust (orange).
+            """)
+
+            st.subheader("Key Insights:")
+            st.markdown("""
+            - **Summer Peaks (May–September):** Emotion activity surges in these months, with July showing the highest count (~500), suggesting peak trail usage and engagement.
+            - **Winter Drop-Off:** Minimal entries in colder months like January and November reflect lower hiker turnout or fewer journal logs.
+            - **May Stands Out:** With a particularly high balance of all emotions, May may offer a rich emotional experience but also more crowding.
+            - **Solitude Indicators:** February and November, with just 10 and 7 entries respectively, indicate ideal months for hikers seeking solitude.
+            """)
+
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - **Trip Timing for Solitude Seekers:** Plan for off-peak months like February or November to enjoy a quieter trail and less crowded shelters.
+            - **Expect Crowds in Summer:** Use high emotion counts in June–August as indicators of busy periods for campsites and high social interaction.
+            - **Trail Event Planning:** Trail managers can time events or wellness programs during months with peak emotional activity to reach more hikers.
+            - **Logistics Planning:** Higher entry counts may correlate with the need for additional resources (e.g., resupply points, mental health support) during busier periods.
+            """)
+
 
 
 # 6) Top 10% Hikers’ Analysis
 with tabs[5]:
     st.header("🚩 Top 10% Hikers’ Analysis")
-    st.markdown("""
-    **What you see:**  
-    - Monthly counts (left) and proportions (right) for the *most engaged* 10% of hikers.
+    col1, col2 = st.columns([2, 1])
+    with col1:
+        st.markdown("""
+        **What you see:**  
+        - Monthly counts (left) and proportions (right) for the *most engaged* 10% of hikers.
 
-    **Trip‑planning scenario:**  
-    > *Want to follow the “trailblazers”? If their joy spikes in March,  
-    > consider starting then to benefit from local trail communities and events.*
+        **Trip‑planning scenario:**  
+        > *Want to follow the “trailblazers”? If their joy spikes in March,  
+        > consider starting then to benefit from local trail communities and events.*
 
-    **Key insights:**  
-    - Top 10% patterns often foreshadow broader trail sentiment.  
-    - High fear in Phase 1 among top hikers suggests extra gear prep.  
-    - Watching their joy surges can point to must‑visit trail segments.
-    """)
-    st.plotly_chart(get_top10_counts(selected_year), use_container_width=True)
-    st.plotly_chart(get_top10_props(selected_year),  use_container_width=True)
+        **Key insights:**  
+        - Top 10% patterns often foreshadow broader trail sentiment.  
+        - High fear in Phase 1 among top hikers suggests extra gear prep.  
+        - Watching their joy surges can point to must‑visit trail segments.
+        """)
+        st.plotly_chart(get_top10_counts(selected_year), use_container_width=True)
+        st.plotly_chart(get_top10_props(selected_year),  use_container_width=True)
+    with col2:
+        with st.container(border=True):
+            st.subheader("Graph Explanation:")
+            st.write("""
+            - **What the Graph Shows:** A stacked bar chart showing the raw monthly emotion counts for the most active 10% of hikers — those who journal the most.
+            - **X-axis (Date):** Each month from March through November 2022.
+            - **Y-axis (Emotion Count):** Total emotion-labeled journal entries recorded by top 10% hikers each month.
+            - **Color Coding:** Joy (yellow), surprise (green), anger (blue), disgust (orange), fear (gray), and sadness (light blue) are shown as stacked segments per month.
+            """)
+
+            st.subheader("Key Insights:")
+            st.markdown("""
+            - **Top Hikers Set the Tone:** Emotional trends among the top 10% often anticipate broader trail sentiment and engagement.
+            - **High Early-Season Fear (May):** Suggests that even experienced or active hikers feel significant pressure at the start of the hike — good reason to prepare mentally and logistically.
+            - **Joy Surges in July & October:** These spikes may reflect rewarding trail segments or events worth aligning a trip around.
+            - **Consistent Surprise in Summer Months:** Could correlate with wildlife, social encounters, or scenic highlights experienced by high-engagement hikers.
+            """)
+
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - **Trailblazer-Inspired Planning:** Start your hike in sync with top hikers’ emotional highs (e.g., March joy spikes) to benefit from shared experiences and community energy.
+            - **Targeted Gear Prep:** When even top hikers feel high fear in early months, it's wise to overprepare — especially with weather-resistant or comfort gear.
+            - **Trail Segment Mapping:** Use peaks in joy or surprise among elite hikers to identify standout sections of the trail.
+            - **Hiker Community Building:** Organize trail meetups or resource drops around periods with high emotion counts from top contributors.
+            """)

@@ -226,5 +226,4 @@ with tabs[1]:
             - Trail planners and conservancy groups can use community size and activeness data to determine which years need more support infrastructure or outreach.
             - App developers and social platforms targeting hikers can identify the years and groups with the highest engagement for further community building or feedback collection.
             - Historians and writers documenting Appalachian Trail culture can focus on 2019 as a pivotal year for community formation and trail engagement.
-
             """)
