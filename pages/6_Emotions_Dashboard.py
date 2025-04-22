@@ -353,7 +353,7 @@ with tabs[1]:
 
         **Trip‑planning scenario:**  
         > *You want to start in May but are nervous about unpredictable weather.  
-        > May’s dominant emotion is fear (red)—so plan for rain‑ready gear and  
+        > May’s dominant emotion is fear (gray)—so plan for rain‑ready gear and  
         > consider an earlier start in April when joy was higher.*
 
         **Key insights:**  
@@ -369,7 +369,7 @@ with tabs[1]:
             - **What the Graph Shows:** A bar chart displaying the most common emotion among hikers for each month in 2022. Bars are color-coded by emotion and sized by frequency.
             - **X-axis (Date):** Each month from March to November 2022.
             - **Y-axis (Emotion Count):** Number of times the dominant emotion was logged by hikers in that month.
-            - **Color Coding:** Yellow = Joy, Green = Surprise, Red = Fear, Gray = Sadness.
+            - **Color Coding:** Yellow = Joy, Green = Surprise, Gray = Fear, Light Blue = Sadness.
             """)
 
             st.subheader("Key Insights:")
