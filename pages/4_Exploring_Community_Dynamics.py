@@ -16,12 +16,15 @@ import seaborn as sns
 from PIL import Image
 import os
 import plotly.express as px
+from pyvis.network import Network
+import streamlit.components.v1 as components
 
-st.title("Exploring Community Dynamiw")  
+st.title("Exploring Community Dynamics")  
 
 tab_titles = [
     "Animations",
     "Statistics",
+    "Louvain Community Clusters",
 ]
 
 tabs = st.tabs(tab_titles)
@@ -219,3 +222,84 @@ with tabs[1]:
             - App developers and social platforms targeting hikers can identify the years and groups with the highest engagement for further community building or feedback collection.
             - Historians and writers documenting Appalachian Trail culture can focus on 2019 as a pivotal year for community formation and trail engagement.
             """)
+with tabs[2]:
+    @st.cache_data
+    def load_cleaned_hiker_relations():
+        df = pd.read_csv("cleaned_yearly_hiker_relations.csv")
+        df["Mentioned Hikers"] = df["Mentioned Hikers"].fillna("")
+
+        yearly_relations = {}
+        for year in sorted(df["Year"].unique()):
+            year_df = df[df["Year"] == year]
+            G = {}
+            for _, row in year_df.iterrows():
+                hiker = row["Hiker"].strip().lower()
+                mentions = [m.strip().lower() for m in row["Mentioned Hikers"].split(",") if m.strip()]
+                G[hiker] = mentions
+            yearly_relations[year] = G
+        return yearly_relations
+
+    def build_graph(hiker_mentions_dict):
+        G = nx.Graph()
+        for hiker, mentions in hiker_mentions_dict.items():
+            G.add_node(hiker)
+            for mention in mentions:
+                G.add_edge(hiker, mention)
+        return G
+
+    def show_pyvis_graph(G, partition):
+        net = Network(height="600px", width="100%", notebook=False)
+        net.barnes_hut()
+
+        # Map hiker names to anonymized labels
+        mapping = {name: f"Hiker {i+1}" for i, name in enumerate(G.nodes)}
+        G = nx.relabel_nodes(G, mapping)
+        partition = {mapping[k]: v for k, v in partition.items()}
+
+        for node in G.nodes:
+            net.add_node(node, label=node, group=partition.get(node, 0))
+
+        for edge in G.edges:
+            net.add_edge(edge[0], edge[1])
+
+        net.set_options("""
+        var options = {
+        "nodes": {
+            "font": {
+            "size": 16,
+            "face": "Arial"
+            }
+        },
+        "edges": {
+            "color": {
+            "inherit": true
+            },
+            "smooth": false
+        },
+        "physics": {
+            "barnesHut": {
+            "gravitationalConstant": -8000,
+            "centralGravity": 0.3,
+            "springLength": 95
+            },
+            "minVelocity": 0.75
+        }
+        }
+        """)
+
+        net.save_graph("pyvis_graph.html")
+        HtmlFile = open("pyvis_graph.html", "r", encoding="utf-8")
+        components.html(HtmlFile.read(), height=650)
+
+    # Streamlit UI
+    st.title("Hiker Communities with Louvain Detection")
+    yearly_relations = load_cleaned_hiker_relations()
+    selected_year = st.selectbox("Select Year", list(yearly_relations.keys()))
+
+    if selected_year:
+        G = build_graph(yearly_relations[selected_year])
+        if G.number_of_nodes() > 0:
+            partition = community_louvain.best_partition(G, random_state=42)
+            show_pyvis_graph(G, partition)
+        else:
+            st.warning("No data available for the selected year.")
