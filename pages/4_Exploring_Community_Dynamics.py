@@ -25,7 +25,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("Exploring Community Dynamics")  
+st.title("Exploring Community Dynamiw")  
 
 tab_titles = [
     "Animations",
