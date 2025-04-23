@@ -6,7 +6,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
-st.sidebar.title("Welcome")
 
 st.title("Analysis of the Socio-Emotional Journey of Long-distance Hikers on the Appalachian Trail")  
 st.sidebar.success("Select a page above.")
