@@ -65,7 +65,7 @@ with tabs[0]:
     with col2:
         with st.container(border=True):
             st.subheader("Map Explanation:")
-            st.write("This map displays the 3 best and worst 3 campsites, hostels, or shelters to visit on the Appalachian trail. Based on the emotional sentiment of journal entries recorded by hikers, the locations were measured and ranked by state for their total joy and negativity.Zoom into the map and click on the markers to see the worst locations, denoted by the red markers, and the best locations, denoted by the blue markers.")
+            st.write("This map displays the 3 most enjoyable and 3 least enjoyable campsites, hostels, or shelters to visit in each state of the Appalachian trail. Based on the emotional sentiment of journal entries recorded by hikers, the locations were measured and ranked by state for their total joy and negativity. Zoom into the map and click on the markers to see the most fearful or negative locations, denoted by the red markers, and the most joyful or positive locations, denoted by the blue markers.")
 
             st.subheader("Key Insights:")
             st.markdown("""
@@ -242,10 +242,3 @@ with tabs[4]:
             - Hikers can mentally prepare for more emotionally intensive areas of the trail. 
             - Hikers can aniticipate challenginering areas of the trail. 
             """) 
-
-with tabs[5]:
-    st.header("trying to display dataframe")
-    df = pd.read_csv('CLEANED_CS6724_data_2013_2023.csv')
-    st.write("### Dataset Header")
-    st.write(df.head()) 
-
