@@ -3,13 +3,6 @@ import streamlit.components.v1 as components
 import pandas as pd
 import os
 
-st.set_page_config(
-    page_title="Visualizations",  
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
 st.title("Visualizations Made By Afreen")  
 
 tab_titles = [

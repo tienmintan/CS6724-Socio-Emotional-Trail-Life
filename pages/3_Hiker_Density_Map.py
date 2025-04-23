@@ -2,12 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import os
 
-st.set_page_config(
-    page_title="Interactive Heatmap by Shamsia",
-    page_icon="📍",
-    layout="wide",
-)
-
 st.title("📍 Interactive Heatmap by Shamsia")
 
 # === Layout the map and sidebar ===
