@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.title("Visualizations Made By Krish")  
+st.title("Socialness Visualizations")  
 
 tab_titles = [
     "Ssocial Interactions on hiking trails ",
