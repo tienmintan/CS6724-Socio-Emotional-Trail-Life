@@ -4,7 +4,7 @@ import streamlit.components.v1 as components
 st.title("Socialness Visualizations")  
 
 tab_titles = [
-    "Ssocial Interactions on hiking trails ",
+    "Social Interactions on hiking trails ",
     "Social Interactions by Year and Month",
     "Monthly Distribution of Social Interactions"
 ]
