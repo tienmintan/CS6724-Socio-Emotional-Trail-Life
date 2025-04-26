@@ -5,6 +5,13 @@ import os
 
 st.title("State Level Experiences and Emotions Map")  
 
+st.set_page_config(
+     page_title="Visualizations",  
+     page_icon="📊",
+     layout="wide",
+     initial_sidebar_state="expanded"
+ )
+
 tab_titles = [
     "Most and Least Enjoyable Locations of the Trail in Each State",
     "Trail Magic Occurences by State",
