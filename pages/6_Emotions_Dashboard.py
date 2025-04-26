@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # ----------------------------------------------------------------
-# 1) PAGE CONFIG (must be first)
+# 1) PAGE CONFIG
 # ----------------------------------------------------------------
 
 st.title("Hikers' Emotions Dashboard")
@@ -534,6 +534,7 @@ with tabs[5]:
         st.markdown("""
         **What you see:**  
         - Monthly counts (left) and proportions (right) for the *most engaged* 10% of hikers.
+        - This means that they are the top 10% hikers who completed the most distances and reports in their hiking experience, hence they are considered the most engaged.
 
         **Trip‑planning scenario:**  
         > *Want to follow the “trailblazers”? If their joy spikes in March,  
