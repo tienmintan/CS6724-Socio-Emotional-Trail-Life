@@ -1,9 +1,4 @@
 import streamlit as st
-import streamlit.components.v1 as components
-import pandas as pd
-import os
-
-st.title("State Level Experiences and Emotions Map")  
 
 st.set_page_config(
      page_title="Visualizations",  
@@ -11,6 +6,12 @@ st.set_page_config(
      layout="wide",
      initial_sidebar_state="expanded"
  )
+
+import streamlit.components.v1 as components
+import pandas as pd
+import os
+
+st.title("State Level Experiences and Emotions Map")  
 
 tab_titles = [
     "Most and Least Enjoyable Locations of the Trail in Each State",
