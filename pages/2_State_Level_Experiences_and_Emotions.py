@@ -11,7 +11,7 @@ import streamlit.components.v1 as components
 import pandas as pd
 import os
 
-st.title("State Level Experiences and Emotions Map")  
+st.title("State Level Experiences and Emotions Maps")  
 
 tab_titles = [
     "Most and Least Enjoyable Locations of the Trail in Each State",
