@@ -11,7 +11,6 @@ tab_titles = [
     "Trail Magic Occurences per Mile in Each State",
     "Negative Emotions of NOBO Hikers Across the Trail",
     "Negative Emotions of SOBO Hikers Across the Trail",
-    "dataset trail"
 ]
 
 tabs = st.tabs(tab_titles)
