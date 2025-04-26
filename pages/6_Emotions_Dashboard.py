@@ -10,8 +10,6 @@ st.set_page_config(
      initial_sidebar_state="expanded"
  )
 
-st.title("Hikers' Emotions Dashboard")
-
 # ----------------------------------------------------------------
 # 2) CUSTOM CSS FOR ACCESSIBILITY & ENGAGEMENT
 # ----------------------------------------------------------------
@@ -51,6 +49,7 @@ st.markdown(
 # 3) PAGE TITLE & TABS
 # ----------------------------------------------------------------
 st.title("🏞️ Hikers' Emotions Visualization Dashboard")
+st.header("Select a year located on the side bar and explore our analysis of different emotions happening on the Appalachian Trail!")
 tabs = st.tabs([
     "👣 Individual Journeys",
     "📊 Monthly Dominant",
