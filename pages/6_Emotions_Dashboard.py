@@ -5,13 +5,12 @@ import plotly.express as px
 # ----------------------------------------------------------------
 # 1) PAGE CONFIG
 # ----------------------------------------------------------------
-
-st.title("Hikers' Emotions Dashboard")
-
 st.set_page_config(
      layout="wide",
      initial_sidebar_state="expanded"
  )
+
+st.title("Hikers' Emotions Dashboard")
 
 # ----------------------------------------------------------------
 # 2) CUSTOM CSS FOR ACCESSIBILITY & ENGAGEMENT
