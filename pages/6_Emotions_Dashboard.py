@@ -310,6 +310,16 @@ with tabs[0]:
         - Spot early‑phase fear spikes to pack extra comfort foods.  
         - Celebrate mid‑trail joy peaks with planned photo stops.  
         - Prepare mentally for end‑section fatigue before you hit it.
+
+        The data source for our project is the **Trail Journals Platform**, an online community-driven 
+        website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
+        This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
+        valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
+        however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
+        that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
+        This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
+        The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
+        accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
         """)
         dfy = df_top_10[df_top_10['date'].dt.year == selected_year]
         for anon in sorted(dfy['hiker_anon'].unique()):
@@ -361,6 +371,17 @@ with tabs[1]:
         - Weather‑linked fear spikes in spring/fall.  
         - Summer months show consistent joy — ideal for first‑timers.  
         - 2022 dips suggest lower trail traffic — quieter, but less on‑trail support.
+
+        The data source for our project is the **Trail Journals Platform**, an online community-driven 
+        website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
+        This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
+        valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
+        however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
+        that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
+        This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
+        The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
+        accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
+        
         """)
         st.plotly_chart(get_monthly_emotion_trends(selected_year), use_container_width=True)
     with col2:
@@ -407,6 +428,16 @@ with tabs[2]:
         - A high fear proportion signals the importance of community support.  
         - Balanced joy/fear encourages mid‑trail morale boosts like summit parties.  
         - Low disgust/anger shows overall positive hiker sentiment.
+
+        The data source for our project is the **Trail Journals Platform**, an online community-driven 
+        website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
+        This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
+        valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
+        however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
+        that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
+        This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
+        The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
+        accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
         """)
         st.plotly_chart(get_emotion_proportions(selected_year), use_container_width=True)
 
@@ -453,6 +484,16 @@ with tabs[3]:
         - Seasonal shifts (i.e. winter→fear, summer→joy).  
         - Surprise peaks could align with wildlife sightings or trail events.  
         - Use this to tailor mental‑health tactics month‑to‑month.
+
+        The data source for our project is the **Trail Journals Platform**, an online community-driven 
+        website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
+        This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
+        valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
+        however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
+        that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
+        This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
+        The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
+        accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
         """)
         st.plotly_chart(get_proportion_bar(selected_year), use_container_width=True)
     with col2:
@@ -499,6 +540,16 @@ with tabs[4]:
         - Peak activity in summer → expect crowded campsites.  
         - Off‑season dips show quieter trail but tougher weather.  
         - Use counts to choose your comfort vs. solitude balance.
+
+        The data source for our project is the **Trail Journals Platform**, an online community-driven 
+        website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
+        This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
+        valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
+        however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
+        that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
+        This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
+        The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
+        accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
         """)
         st.plotly_chart(get_count_bar(selected_year), use_container_width=True)
     with col2:
@@ -547,6 +598,16 @@ with tabs[5]:
         - Top 10% patterns often foreshadow broader trail sentiment.  
         - High fear in Phase 1 among top hikers suggests extra gear prep.  
         - Watching their joy surges can point to must‑visit trail segments.
+
+        The data source for our project is the **Trail Journals Platform**, an online community-driven 
+        website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
+        This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
+        valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
+        however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
+        that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
+        This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
+        The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
+        accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
         """)
         st.plotly_chart(get_top10_counts(selected_year), use_container_width=True)
         st.plotly_chart(get_top10_props(selected_year),  use_container_width=True)
