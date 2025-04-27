@@ -40,14 +40,6 @@ st.markdown(
         border-radius: 5px;
         font-size: 0.95rem;
       }
-      .footer {
-        text-align: left-align;
-        font-size: 0.8rem;
-        color: #666666;
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 1px solid #cccccc;
-      }
     </style>
     """,
     unsafe_allow_html=True
@@ -294,19 +286,8 @@ def get_top10_props(yr):
     return fig
 
 # ----------------------------------------------------------------
-# 9) TAB AND FOOTER CONTENT
+# 9) TAB CONTENT
 # ----------------------------------------------------------------
-
-def draw_footer():
-    st.markdown("---")
-    st.markdown(
-        "<div class='footer'>"
-        "Data source: Trail Journal Platform (trailjournals.com). "
-        "Dataset: cleaned CSV of journal entries annotated with emotions "
-        "(joy, surprise, disgust, anger, sadness, fear)."
-        "</div>",
-        unsafe_allow_html=True
-    )
 
 # 1) Individual Journeys
 with tabs[0]:
@@ -360,7 +341,6 @@ with tabs[0]:
             - **Hiker Support Systems:** Friends or family tracking a hiker’s journey can offer targeted encouragement or check-ins during likely emotional downturns.
             - **Mental Health Checkpoints:** Trail organizations can use emotional data to identify which sections of the trail are most emotionally taxing and provide support resources accordingly.
             """)
-     draw_footer()
 
 
 # 2) Monthly Dominant Emotions
@@ -408,7 +388,6 @@ with tabs[1]:
             - **Mental Preparedness:** Anticipate emotional dips in colder months and prep strategies like journaling prompts or mindfulness routines.
             - **Trail Resource Planning:** Trail organizations can use monthly emotion trends to time support services (e.g., morale boosts or check-ins) where they’re most needed.
             """)
-     draw_footer()
 
 # 3) Overall Emotion Proportions
 with tabs[2]:
@@ -456,7 +435,6 @@ with tabs[2]:
             - **Mental Health Monitoring:** Use emotional proportions to benchmark against past years and assess the emotional well-being of the hiking community.
             - **Onboarding New Hikers:** Communicate realistic emotional expectations (e.g., highs and lows are common) to better prepare new hikers mentally.
             """)
-     draw_footer()
 
 # 4) Emotions Proportion Over Time
 with tabs[3]:
@@ -502,7 +480,6 @@ with tabs[3]:
             - **Seasonal Event Planning:** Trail coordinators can align celebrations or wellness events with surprise or joy peaks for maximum morale impact.
             - **Gear Optimization:** Prepare for fear-heavy months with extra protection (rain gear, comfort items) and travel in groups during emotionally challenging periods.
             """)
-     draw_footer()
 
 
 # 5) Emotions Count Over Time
@@ -549,7 +526,6 @@ with tabs[4]:
             - **Trail Event Planning:** Trail managers can time events or wellness programs during months with peak emotional activity to reach more hikers.
             - **Logistics Planning:** Higher entry counts may correlate with the need for additional resources (e.g., resupply points, mental health support) during busier periods.
             """)
-     draw_footer()
 
 
 
@@ -599,4 +575,3 @@ with tabs[5]:
             - **Trail Segment Mapping:** Use peaks in joy or surprise among elite hikers to identify standout sections of the trail.
             - **Hiker Community Building:** Organize trail meetups or resource drops around periods with high emotion counts from top contributors.
             """)
-     draw_footer()
