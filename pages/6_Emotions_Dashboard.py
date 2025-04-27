@@ -320,7 +320,7 @@ with tabs[0]:
      This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
      The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
      accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-        """)
+     """)
         dfy = df_top_10[df_top_10['date'].dt.year == selected_year]
         for anon in sorted(dfy['hiker_anon'].unique()):
             dfo = dfy[dfy['hiker_anon'] == anon]
@@ -381,7 +381,7 @@ with tabs[1]:
      This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
      The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
      accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-        """)
+     """)
         st.plotly_chart(get_monthly_emotion_trends(selected_year), use_container_width=True)
     with col2:
         with st.container(border=True):
@@ -437,7 +437,7 @@ with tabs[2]:
      This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
      The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
      accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-        """)
+     """)
         st.plotly_chart(get_emotion_proportions(selected_year), use_container_width=True)
 
     with col2:
@@ -493,7 +493,7 @@ with tabs[3]:
      This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
      The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
      accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-        """)
+     """)
         st.plotly_chart(get_proportion_bar(selected_year), use_container_width=True)
     with col2:
         with st.container(border=True):
@@ -549,7 +549,7 @@ with tabs[4]:
      This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
      The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
      accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-        """)
+     """)
         st.plotly_chart(get_count_bar(selected_year), use_container_width=True)
     with col2:
         with st.container(border=True):
@@ -607,7 +607,7 @@ with tabs[5]:
      This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
      The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
      accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-        """)
+     """)
         st.plotly_chart(get_top10_counts(selected_year), use_container_width=True)
         st.plotly_chart(get_top10_props(selected_year),  use_container_width=True)
     with col2:
