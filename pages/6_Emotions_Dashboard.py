@@ -295,32 +295,22 @@ with tabs[0]:
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown("""
-     **What you see:**  
-     A day‑by‑day line indicating each hiker’s emotions based on the date entered.  
-     - **X‑axis (Date):** Daily progress  
-     - **Y‑axis (Emotion):** From joy (top) to anger (bottom)  
-     - **Dashed lines:** Mark three hiking phases (early, middle, final push)
-
-     **Trip‑planning scenario:**  
-     > *Imagine you’re planning a 25‑day thru‑hike and worried about mid‑trail slumps.  
-     > Check “Hiker 3” to see when their joy dipped in Phase 2 — you can  
-     > schedule a rest day or extra resupply at that point.*
-
-     **Key insights:**  
-     - Spot early‑phase fear spikes to pack extra comfort foods.  
-     - Celebrate mid‑trail joy peaks with planned photo stops.  
-     - Prepare mentally for end‑section fatigue before you hit it.
-
-     The data source for our project is the **Trail Journals Platform**, an online community-driven 
-     website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
-     This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
-     valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
-     however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
-     that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
-     This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
-     The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
-     accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-     """)
+          **What you see:**  
+          A day‑by‑day line indicating each hiker’s emotions based on the date entered.  
+          - **X‑axis (Date):** Daily progress  
+          - **Y‑axis (Emotion):** From joy (top) to anger (bottom)  
+          - **Dashed lines:** Mark three hiking phases (early, middle, final push)
+     
+          **Trip‑planning scenario:**  
+          > *Imagine you’re planning a 25‑day thru‑hike and worried about mid‑trail slumps.  
+          > Check “Hiker 3” to see when their joy dipped in Phase 2 — you can  
+          > schedule a rest day or extra resupply at that point.*
+     
+          **Key insights:**  
+          - Spot early‑phase fear spikes to pack extra comfort foods.  
+          - Celebrate mid‑trail joy peaks with planned photo stops.  
+          - Prepare mentally for end‑section fatigue before you hit it.
+          """)
         dfy = df_top_10[df_top_10['date'].dt.year == selected_year]
         for anon in sorted(dfy['hiker_anon'].unique()):
             dfo = dfy[dfy['hiker_anon'] == anon]
@@ -359,29 +349,19 @@ with tabs[1]:
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown("""
-     **What you see:**  
-     A bar for each month showing the *single* most common emotion among all hikers.
-
-     **Trip‑planning scenario:**  
-     > *You want to start in May but are nervous about unpredictable weather.  
-     > May’s dominant emotion is fear (gray)—so plan for rain‑ready gear and  
-     > consider an earlier start in April when joy was higher.*
-
-     **Key insights:**  
-     - Weather‑linked fear spikes in spring/fall.  
-     - Summer months show consistent joy — ideal for first‑timers.  
-     - 2022 dips suggest lower trail traffic — quieter, but less on‑trail support.
-
-     The data source for our project is the **Trail Journals Platform**, an online community-driven 
-     website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
-     This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
-     valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
-     however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
-     that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
-     This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
-     The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
-     accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-     """)
+          **What you see:**  
+          A bar for each month showing the *single* most common emotion among all hikers.
+     
+          **Trip‑planning scenario:**  
+          > *You want to start in May but are nervous about unpredictable weather.  
+          > May’s dominant emotion is fear (gray)—so plan for rain‑ready gear and  
+          > consider an earlier start in April when joy was higher.*
+     
+          **Key insights:**  
+          - Weather‑linked fear spikes in spring/fall.  
+          - Summer months show consistent joy — ideal for first‑timers.  
+          - 2022 dips suggest lower trail traffic — quieter, but less on‑trail support.
+          """)
         st.plotly_chart(get_monthly_emotion_trends(selected_year), use_container_width=True)
     with col2:
         with st.container(border=True):
@@ -415,29 +395,19 @@ with tabs[2]:
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown("""
-     **What you see:**  
-     A summary of each emotion’s share across the entire year.
-
-     **Trip‑planning scenario:**  
-     > *You’re deciding whether to hike solo or in a group.  
-     > If fear accounts for 40% and joy only 30%, you might prefer a buddy  
-     > until you’re more comfortable with the trail.*
-
-     **Key insights:**  
-     - A high fear proportion signals the importance of community support.  
-     - Balanced joy/fear encourages mid‑trail morale boosts like summit parties.  
-     - Low disgust/anger shows overall positive hiker sentiment.
-
-     The data source for our project is the **Trail Journals Platform**, an online community-driven 
-     website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
-     This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
-     valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
-     however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
-     that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
-     This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
-     The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
-     accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-     """)
+          **What you see:**  
+          A summary of each emotion’s share across the entire year.
+     
+          **Trip‑planning scenario:**  
+          > *You’re deciding whether to hike solo or in a group.  
+          > If fear accounts for 40% and joy only 30%, you might prefer a buddy  
+          > until you’re more comfortable with the trail.*
+     
+          **Key insights:**  
+          - A high fear proportion signals the importance of community support.  
+          - Balanced joy/fear encourages mid‑trail morale boosts like summit parties.  
+          - Low disgust/anger shows overall positive hiker sentiment.
+          """)
         st.plotly_chart(get_emotion_proportions(selected_year), use_container_width=True)
 
     with col2:
@@ -472,28 +442,18 @@ with tabs[3]:
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown("""
-     **What you see:**  
-     A stacked bar chart of emotion mixes month‑by‑month.
-
-     **Trip‑planning scenario:**  
-     > *Planning a June start? Notice June has 50% joy, 20% fear, 15% surprise.  
-     > Pack extra sunscreen for those joyful sunny days and rain gear for the fearful 20%.*
-
-     **Key insights:**  
-     - Seasonal shifts (i.e. winter→fear, summer→joy).  
-     - Surprise peaks could align with wildlife sightings or trail events.  
-     - Use this to tailor mental‑health tactics month‑to‑month.
-
-     The data source for our project is the **Trail Journals Platform**, an online community-driven 
-     website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
-     This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
-     valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
-     however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
-     that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
-     This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
-     The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
-     accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-     """)
+          **What you see:**  
+          A stacked bar chart of emotion mixes month‑by‑month.
+     
+          **Trip‑planning scenario:**  
+          > *Planning a June start? Notice June has 50% joy, 20% fear, 15% surprise.  
+          > Pack extra sunscreen for those joyful sunny days and rain gear for the fearful 20%.*
+     
+          **Key insights:**  
+          - Seasonal shifts (i.e. winter→fear, summer→joy).  
+          - Surprise peaks could align with wildlife sightings or trail events.  
+          - Use this to tailor mental‑health tactics month‑to‑month.
+          """)
         st.plotly_chart(get_proportion_bar(selected_year), use_container_width=True)
     with col2:
         with st.container(border=True):
@@ -528,28 +488,18 @@ with tabs[4]:
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown("""
-     **What you see:**  
-     Raw counts of emotion-labeled entries each month.
-
-     **Trip‑planning scenario:**  
-     > *You’d rather hike in less‑crowded months to avoid overpacked shelters.  
-     > Notice February has only 10 entries vs July’s 200—ideal for solitude seekers.*
-
-     **Key insights:**  
-     - Peak activity in summer → expect crowded campsites.  
-     - Off‑season dips show quieter trail but tougher weather.  
-     - Use counts to choose your comfort vs. solitude balance.
-
-     The data source for our project is the **Trail Journals Platform**, an online community-driven 
-     website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
-     This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
-     valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
-     however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
-     that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
-     This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
-     The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
-     accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-     """)
+          **What you see:**  
+          Raw counts of emotion-labeled entries each month.
+     
+          **Trip‑planning scenario:**  
+          > *You’d rather hike in less‑crowded months to avoid overpacked shelters.  
+          > Notice February has only 10 entries vs July’s 200—ideal for solitude seekers.*
+     
+          **Key insights:**  
+          - Peak activity in summer → expect crowded campsites.  
+          - Off‑season dips show quieter trail but tougher weather.  
+          - Use counts to choose your comfort vs. solitude balance.
+          """)
         st.plotly_chart(get_count_bar(selected_year), use_container_width=True)
     with col2:
         with st.container(border=True):
@@ -585,29 +535,19 @@ with tabs[5]:
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown("""
-     **What you see:**  
-     - Monthly counts (left) and proportions (right) for the *most engaged* 10% of hikers.
-     - This means that they are the top 10% hikers who completed the most distances and reports in their hiking experience, hence they are considered the most engaged.
-
-     **Trip‑planning scenario:**  
-     > *Want to follow the “trailblazers”? If their joy spikes in March,  
-     > consider starting then to benefit from local trail communities and events.*
-
-     **Key insights:**  
-     - Top 10% patterns often foreshadow broader trail sentiment.  
-     - High fear in Phase 1 among top hikers suggests extra gear prep.  
-     - Watching their joy surges can point to must‑visit trail segments.
-
-     The data source for our project is the **Trail Journals Platform**, an online community-driven 
-     website where hikers document their daily experiences while hiking long-distance trails, particularly the Appalachian Trail. 
-     This platform offers rich, narrative accounts that encapsulate hikers' emotional responses and social interactions, providing 
-     valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV dataset generated from these trail journals; 
-     however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate entries, and formatting errors 
-     that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using Python libraries. 
-     This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
-     The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling 
-     accurate and insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
-     """)
+          **What you see:**  
+          - Monthly counts (left) and proportions (right) for the *most engaged* 10% of hikers.
+          - This means that they are the top 10% hikers who completed the most distances and reports in their hiking experience, hence they are considered the most engaged.
+     
+          **Trip‑planning scenario:**  
+          > *Want to follow the “trailblazers”? If their joy spikes in March,  
+          > consider starting then to benefit from local trail communities and events.*
+     
+          **Key insights:**  
+          - Top 10% patterns often foreshadow broader trail sentiment.  
+          - High fear in Phase 1 among top hikers suggests extra gear prep.  
+          - Watching their joy surges can point to must‑visit trail segments.
+          """)
         st.plotly_chart(get_top10_counts(selected_year), use_container_width=True)
         st.plotly_chart(get_top10_props(selected_year),  use_container_width=True)
     with col2:
