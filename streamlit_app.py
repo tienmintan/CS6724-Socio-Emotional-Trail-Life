@@ -22,6 +22,15 @@ Long-distance hikers often share their stories online, posting blog entries that
 In this project, we explore how emotional well-being is shaped by **social interactions**, **geographical locations**, and **trail conditions**. 
 By using **AI-driven sentiment analysis** on a decade of hiker journal entries, we uncover where hikers felt joy, where they struggled, 
 and how “trail magic”—unexpected kindness—lifted spirits along the way.
+
+The data source for our project is the Trail Journals Platform, an online community-driven website where hikers document their daily experiences 
+while hiking long-distance trails, particularly the Appalachian Trail. This platform offers rich, narrative accounts that encapsulate hikers' 
+emotional responses and social interactions, providing valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV 
+dataset generated from these trail journals; however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate 
+entries, and formatting errors that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using 
+Python libraries. This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
+The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling accurate and 
+insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
 """, unsafe_allow_html=True)
 
 # What You Can Explore
