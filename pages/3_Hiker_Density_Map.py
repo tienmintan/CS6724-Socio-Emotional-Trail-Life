@@ -1,4 +1,10 @@
 import streamlit as st
+
+st.set_page_config(
+     layout="wide",
+     initial_sidebar_state="expanded"
+ )
+
 import streamlit.components.v1 as components
 import os
 

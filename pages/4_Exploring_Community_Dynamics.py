@@ -1,4 +1,10 @@
 import streamlit as st
+
+st.set_page_config(
+     layout="wide",
+     initial_sidebar_state="expanded"
+ )
+
 import streamlit.components.v1 as components
 import pandas as pd
 import os
@@ -223,83 +229,114 @@ with tabs[1]:
             - Historians and writers documenting Appalachian Trail culture can focus on 2019 as a pivotal year for community formation and trail engagement.
             """)
 with tabs[2]:
-    @st.cache_data
-    def load_cleaned_hiker_relations():
-        df = pd.read_csv("cleaned_yearly_hiker_relations.csv")
-        df["Mentioned Hikers"] = df["Mentioned Hikers"].fillna("")
 
-        yearly_relations = {}
-        for year in sorted(df["Year"].unique()):
-            year_df = df[df["Year"] == year]
-            G = {}
-            for _, row in year_df.iterrows():
-                hiker = row["Hiker"].strip().lower()
-                mentions = [m.strip().lower() for m in row["Mentioned Hikers"].split(",") if m.strip()]
-                G[hiker] = mentions
-            yearly_relations[year] = G
-        return yearly_relations
+    col1, col2 = st.columns([2,1])
+    with col1:
+        @st.cache_data
+        def load_cleaned_hiker_relations():
+            df = pd.read_csv("cleaned_yearly_hiker_relations.csv")
+            df["Mentioned Hikers"] = df["Mentioned Hikers"].fillna("")
 
-    def build_graph(hiker_mentions_dict):
-        G = nx.Graph()
-        for hiker, mentions in hiker_mentions_dict.items():
-            G.add_node(hiker)
-            for mention in mentions:
-                G.add_edge(hiker, mention)
-        return G
+            yearly_relations = {}
+            for year in sorted(df["Year"].unique()):
+                year_df = df[df["Year"] == year]
+                G = {}
+                for _, row in year_df.iterrows():
+                    hiker = row["Hiker"].strip().lower()
+                    mentions = [m.strip().lower() for m in row["Mentioned Hikers"].split(",") if m.strip()]
+                    G[hiker] = mentions
+                yearly_relations[year] = G
+            return yearly_relations
 
-    def show_pyvis_graph(G, partition):
-        net = Network(height="600px", width="100%", notebook=False)
-        net.barnes_hut()
+        def build_graph(hiker_mentions_dict):
+            G = nx.Graph()
+            for hiker, mentions in hiker_mentions_dict.items():
+                G.add_node(hiker)
+                for mention in mentions:
+                    G.add_edge(hiker, mention)
+            return G
 
-        # Map hiker names to anonymized labels
-        mapping = {name: f"Hiker {i+1}" for i, name in enumerate(G.nodes)}
-        G = nx.relabel_nodes(G, mapping)
-        partition = {mapping[k]: v for k, v in partition.items()}
+        def show_pyvis_graph(G, partition):
+            net = Network(height="600px", width="100%", notebook=False)
+            net.barnes_hut()
 
-        for node in G.nodes:
-            net.add_node(node, label=node, group=partition.get(node, 0))
+            # Map hiker names to anonymized labels
+            mapping = {name: f"Hiker {i+1}" for i, name in enumerate(G.nodes)}
+            G = nx.relabel_nodes(G, mapping)
+            partition = {mapping[k]: v for k, v in partition.items()}
 
-        for edge in G.edges:
-            net.add_edge(edge[0], edge[1])
+            for node in G.nodes:
+                net.add_node(node, label=node, group=partition.get(node, 0))
 
-        net.set_options("""
-        var options = {
-        "nodes": {
-            "font": {
-            "size": 16,
-            "face": "Arial"
+            for edge in G.edges:
+                net.add_edge(edge[0], edge[1])
+
+            net.set_options("""
+            var options = {
+            "nodes": {
+                "font": {
+                "size": 16,
+                "face": "Arial"
+                }
+            },
+            "edges": {
+                "color": {
+                "inherit": true
+                },
+                "smooth": false
+            },
+            "physics": {
+                "barnesHut": {
+                "gravitationalConstant": -8000,
+                "centralGravity": 0.3,
+                "springLength": 95
+                },
+                "minVelocity": 0.75
             }
-        },
-        "edges": {
-            "color": {
-            "inherit": true
-            },
-            "smooth": false
-        },
-        "physics": {
-            "barnesHut": {
-            "gravitationalConstant": -8000,
-            "centralGravity": 0.3,
-            "springLength": 95
-            },
-            "minVelocity": 0.75
-        }
-        }
-        """)
+            }
+            """)
 
-        net.save_graph("pyvis_graph.html")
-        HtmlFile = open("pyvis_graph.html", "r", encoding="utf-8")
-        components.html(HtmlFile.read(), height=650)
+            net.save_graph("pyvis_graph.html")
+            HtmlFile = open("pyvis_graph.html", "r", encoding="utf-8")
+            components.html(HtmlFile.read(), height=650)
 
-    # Streamlit UI
-    st.title("Hiker Communities with Louvain Detection")
-    yearly_relations = load_cleaned_hiker_relations()
-    selected_year = st.selectbox("Select Year", list(yearly_relations.keys()))
+        # Streamlit UI
+        st.title("Hiker Communities with Louvain Detection")
+        yearly_relations = load_cleaned_hiker_relations()
+        selected_year = st.selectbox("Select Year", list(yearly_relations.keys()))
 
-    if selected_year:
-        G = build_graph(yearly_relations[selected_year])
-        if G.number_of_nodes() > 0:
-            partition = community_louvain.best_partition(G, random_state=42)
-            show_pyvis_graph(G, partition)
-        else:
-            st.warning("No data available for the selected year.")
+        if selected_year:
+            G = build_graph(yearly_relations[selected_year])
+            if G.number_of_nodes() > 0:
+                partition = community_louvain.best_partition(G, random_state=42)
+                show_pyvis_graph(G, partition)
+            else:
+                st.warning("No data available for the selected year.")
+
+
+    with col2:
+        with st.container(border=True):
+            st.subheader("Graph Explanation:")
+            st.markdown("""
+            - **Louvain Community Graphs (Yearly):** Each graph visualizes the hiker social networks discovered through journal mentions, clustered into communities.
+            - **Node Colors Represent Communities:** Each color indicates a different social group detected by the Louvain algorithm.
+            - **Node Size and Connections:** Node size is uniform for anonymity; edges represent social mentions between hikers, with denser clusters indicating tighter social cohesion.
+            - **Year-to-Year Changes:** Visual density, number of isolated nodes, and group sizes shift noticeably across years, reflecting changes in hiker social dynamics.
+            """)
+
+            st.subheader("Key Insights:")
+            st.markdown("""
+            - **2019:** High connectivity and large, dense communities; most hikers belong to a few interconnected groups.
+            - **2020:** Sparse network with many isolated hikers; very limited social clustering, likely due to pandemic disruptions.
+            - **2021:** Recovery begins — one larger central group emerges alongside scattered smaller communities.
+            - **2022–2023:** Communities remain more fragmented than 2019, but smaller clusters of hikers form stronger bonds within their groups.
+            - **Overall Trend:** Trail social dynamics have shifted from large interconnected communities toward smaller, more self-contained clusters.
+            """)
+
+            st.subheader("Use Cases:")
+            st.markdown("""
+            - **Trail Managers:** Understand when hikers are more socially isolated vs. when support infrastructure (e.g., shelters, group camps) might be needed.
+            - **Mental Health & Well-being Research:** Smaller, fragmented groups could indicate potential increases in hiker loneliness or decreased trail camaraderie after 2020.
+            - **Sociological Studies:** Track how major societal disruptions (like the COVID-19 pandemic) ripple into outdoor social behavior and trail communities.
+            - **Future Trail Planning:** Design strategies for fostering community among hikers during years of reduced natural interaction.
+            """)
