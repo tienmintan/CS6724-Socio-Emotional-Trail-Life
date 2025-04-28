@@ -15,7 +15,7 @@ st.markdown("<h2 style='text-align: center;'>🥾 Welcome to the Emotional Lands
 
 url = "https://www.trailjournals.com/"
 
-st.markdown("""
+st.markdown(f"""
 > *“Thousands of miles, countless steps, and a rollercoaster of emotions.”*
 
 The Appalachian Trail is more than a physical journey—it's an emotional odyssey through forests, friendships, and fatigue. 
