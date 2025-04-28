@@ -9,6 +9,7 @@ st.set_page_config(
 
 st.title("Analysis of the Socio-Emotional Journey of Long-distance Hikers on the Appalachian Trail")  
 st.sidebar.success("Select a page above.")
+url = "https://www.trailjournals.com/"
 
 # Emotional Journey Intro + Map Thumbnails
 st.markdown("<h2 style='text-align: center;'>🥾 Welcome to the Emotional Landscape of the Appalachian Trail</h2>", unsafe_allow_html=True)
@@ -23,14 +24,12 @@ In this project, we explore how emotional well-being is shaped by **social inter
 By using **AI-driven sentiment analysis** on a decade of hiker journal entries, we uncover where hikers felt joy, where they struggled, 
 and how “trail magic”—unexpected kindness—lifted spirits along the way.
 
-The data source for our project is the Trail Journals Platform, an online community-driven website where hikers document their daily experiences 
-while hiking long-distance trails, particularly the Appalachian Trail. This platform offers rich, narrative accounts that encapsulate hikers' 
-emotional responses and social interactions, providing valuable qualitative data for analysis. Initially, our team obtained a large-scale CSV 
-dataset generated from these trail journals; however, this dataset was found to be corrupted, containing inconsistencies, missing values, duplicate 
-entries, and formatting errors that impeded straightforward analysis. To address these issues, we performed an extensive data-cleaning process using 
-Python libraries. This involved standardizing dates, correcting textual errors, removing duplicates, and accurately classifying emotional expressions. 
-The resulting cleaned dataset was extracted into a refined CSV format, significantly simplifying the implementation process and enabling accurate and 
-insightful visualizations of emotional and social patterns among Appalachian Trail hikers.
+The data source for our project is the [Trail Journals Platform]({url}), an online community-driven website where hikers document their experiences while hiking 
+long-distance trails. This platform offers rich, narrative accounts that encapsulate hikers' emotional responses, social interactions, opinions, and behaviors 
+on the trail. The data used for analysis only includes Appalachian Trail long-distance hikers, defined as hikers who have at least hiked 100 miles on the same 
+trail within a month. The dataset spans from 2013 to 2023 and includes:
+- 987 hikers
+- 232,143 individual journal entries
 """, unsafe_allow_html=True)
 
 # What You Can Explore
