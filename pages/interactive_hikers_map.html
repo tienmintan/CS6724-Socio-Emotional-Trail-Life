@@ -20,12 +20,18 @@
     <input type="radio" name="filterMode" value="date"> Date
   </div>
 
-  <label>📅 Year:</label>
-  <select id="yearFilter"></select>
-  <label>Month:</label>
-  <select id="monthFilter"></select>
-  <label>Date:</label>
-  <input type="date" id="dateFilter" />
+  <div id="monthControls">
+    <label>📅 Year:</label>
+    <select id="yearFilter"></select>
+    <label>Month:</label>
+    <select id="monthFilter"></select>
+  </div>
+
+  <div id="dateControls" style="display:none;">
+    <label>Date:</label>
+    <input type="date" id="dateFilter" />
+  </div>
+
   <label><input type="checkbox" id="showSentiment" checked /> Show Sentiment Markers</label>
 </div>
 
@@ -61,6 +67,20 @@
 
   function getFilterMode() {
     return [...filterRadios].find(r => r.checked).value;
+  }
+
+  function updateFilterUI() {
+    const mode = getFilterMode();
+    const monthControls = document.getElementById('monthControls');
+    const dateControls = document.getElementById('dateControls');
+
+    if (mode === 'month') {
+      monthControls.style.display = 'block';
+      dateControls.style.display = 'none';
+    } else {
+      monthControls.style.display = 'none';
+      dateControls.style.display = 'block';
+    }
   }
 
   function updateMap() {
@@ -125,10 +145,14 @@
   monthFilter.addEventListener('change', updateMap);
   dateFilter.addEventListener('change', updateMap);
   sentimentToggle.addEventListener('change', updateMap);
-  filterRadios.forEach(r => r.addEventListener('change', updateMap));
+  filterRadios.forEach(r => r.addEventListener('change', () => {
+    updateFilterUI();
+    updateMap();
+  }));
 
   yearFilter.value = years[0];
   updateMonths();
+  updateFilterUI();
   updateMap();
 </script>
 
