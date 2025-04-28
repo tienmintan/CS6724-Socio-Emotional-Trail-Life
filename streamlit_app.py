@@ -9,10 +9,11 @@ st.set_page_config(
 
 st.title("Analysis of the Socio-Emotional Journey of Long-distance Hikers on the Appalachian Trail")  
 st.sidebar.success("Select a page above.")
-url = "https://www.trailjournals.com/"
 
 # Emotional Journey Intro + Map Thumbnails
 st.markdown("<h2 style='text-align: center;'>🥾 Welcome to the Emotional Landscape of the Appalachian Trail</h2>", unsafe_allow_html=True)
+
+url = "https://www.trailjournals.com/"
 
 st.markdown("""
 > *“Thousands of miles, countless steps, and a rollercoaster of emotions.”*
@@ -30,7 +31,7 @@ on the trail. The data used for analysis only includes Appalachian Trail long-di
 trail within a month. The dataset spans from 2013 to 2023 and includes:
 - 987 hikers
 - 232,143 individual journal entries
-""", unsafe_allow_html=True)
+""")
 
 # What You Can Explore
 st.markdown("### 🔍 What You’ll Find Inside")
