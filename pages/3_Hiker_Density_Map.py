@@ -1,14 +1,14 @@
 import streamlit as st
+
+st.set_page_config(
+     layout="wide",
+     initial_sidebar_state="expanded"
+ )
+
 import streamlit.components.v1 as components
 import os
 
-st.set_page_config(
-    page_title="Interactive Heatmap by Shamsia",
-    page_icon="📍",
-    layout="wide",
-)
-
-st.title("📍 Interactive Heatmap by Shamsia")
+st.title("📍 Hiker Density Interactive Heatmap")
 
 # === Layout the map and sidebar ===
 col1, col2 = st.columns([2, 1])

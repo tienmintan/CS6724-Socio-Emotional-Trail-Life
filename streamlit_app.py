@@ -13,7 +13,9 @@ st.sidebar.success("Select a page above.")
 # Emotional Journey Intro + Map Thumbnails
 st.markdown("<h2 style='text-align: center;'>🥾 Welcome to the Emotional Landscape of the Appalachian Trail</h2>", unsafe_allow_html=True)
 
-st.markdown("""
+url = "https://www.trailjournals.com/"
+
+st.markdown(f"""
 > *“Thousands of miles, countless steps, and a rollercoaster of emotions.”*
 
 The Appalachian Trail is more than a physical journey—it's an emotional odyssey through forests, friendships, and fatigue. 
@@ -22,7 +24,14 @@ Long-distance hikers often share their stories online, posting blog entries that
 In this project, we explore how emotional well-being is shaped by **social interactions**, **geographical locations**, and **trail conditions**. 
 By using **AI-driven sentiment analysis** on a decade of hiker journal entries, we uncover where hikers felt joy, where they struggled, 
 and how “trail magic”—unexpected kindness—lifted spirits along the way.
-""", unsafe_allow_html=True)
+
+The data source for our project is the [Trail Journals Platform]({url}), an online community-driven website where hikers document their experiences while hiking 
+long-distance trails. This platform offers rich, narrative accounts that encapsulate hikers' emotional responses, social interactions, opinions, and behaviors 
+on the trail. The data used for analysis only includes Appalachian Trail long-distance hikers, defined as hikers who have at least hiked 100 miles on the same 
+trail within a month. The dataset spans from 2013 to 2023 and includes:
+- 987 hikers
+- 232,143 individual journal entries
+""")
 
 # What You Can Explore
 st.markdown("### 🔍 What You’ll Find Inside")

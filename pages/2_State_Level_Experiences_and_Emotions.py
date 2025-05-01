@@ -1,16 +1,17 @@
 import streamlit as st
+
+st.set_page_config(
+     page_title="Visualizations",  
+     page_icon="📊",
+     layout="wide",
+     initial_sidebar_state="expanded"
+ )
+
 import streamlit.components.v1 as components
 import pandas as pd
 import os
 
-st.set_page_config(
-    page_title="Visualizations",  
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-st.title("Visualizations Made By Afreen")  
+st.title("State Level Experiences and Emotions Maps")  
 
 tab_titles = [
     "Most and Least Enjoyable Locations of the Trail in Each State",
@@ -18,7 +19,6 @@ tab_titles = [
     "Trail Magic Occurences per Mile in Each State",
     "Negative Emotions of NOBO Hikers Across the Trail",
     "Negative Emotions of SOBO Hikers Across the Trail",
-    "dataset trail"
 ]
 
 tabs = st.tabs(tab_titles)

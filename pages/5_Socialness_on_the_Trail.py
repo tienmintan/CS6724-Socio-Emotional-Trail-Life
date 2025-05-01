@@ -1,17 +1,16 @@
 import streamlit as st
-import streamlit.components.v1 as components
 
 st.set_page_config(
-    page_title="Visualizations",  
-    page_icon="📊",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+     layout="wide",
+     initial_sidebar_state="expanded"
+ )
+
+import streamlit.components.v1 as components
 
 st.title("Socialness Visualizations")  
 
 tab_titles = [
-    "Ssocial Interactions on hiking trails ",
+    "Social Interactions on hiking trails ",
     "Social Interactions by Year and Month",
     "Monthly Distribution of Social Interactions"
 ]
