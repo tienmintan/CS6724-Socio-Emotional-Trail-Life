@@ -10,6 +10,10 @@ st.set_page_config(
 import streamlit.components.v1 as components
 import pandas as pd
 import os
+import geopandas as gpd
+import folium
+from shapely.geometry import Point
+from streamlit_folium import st_folium
 
 st.title("State Level Experiences and Emotions Maps")  
 
@@ -17,6 +21,7 @@ tab_titles = [
     "Most and Least Enjoyable Locations of the Trail in Each State",
     "Trail Magic Occurences by State",
     "Trail Magic Occurences per Mile in Each State",
+    "Interactive Trail Magic per Mile by Year",     
     "Negative Emotions of NOBO Hikers Across the Trail",
     "Negative Emotions of SOBO Hikers Across the Trail",
 ]
@@ -136,9 +141,78 @@ with tabs[2]:
             - Hikers can plan and prepare for their trip with necessary supplies knowing how much trail magic is available in each state. For example, northern states may require more supplies.
             """) 
 
-
-
 with tabs[3]:
+    st.header("Interactive Trail Magic per Mile by Year 🔄")
+
+    selected_year = st.selectbox("Select a year", list(range(2013, 2024)), index=10)
+
+    df = pd.read_csv('CLEANED_CS6724_data_2013_2023.csv', encoding='ISO-8859-1', low_memory=False,
+                     usecols=['Destination', 'Unique Interactions', 'Latitude', 'Longitude', 'year'])
+
+    df = df[df['year'] == selected_year]
+    df = df.dropna(subset=['Latitude', 'Longitude'])
+    df['Latitude'] = pd.to_numeric(df['Latitude'], errors='coerce')
+    df['Longitude'] = pd.to_numeric(df['Longitude'], errors='coerce')
+    df = df.dropna(subset=['Latitude', 'Longitude'])
+    df = df[df['Unique Interactions'].astype(str).str.contains("'trail magic'", na=False)]
+
+    trail_states = ["Georgia", "North Carolina", "Tennessee", "Virginia", "West Virginia",
+                    "Maryland", "Pennsylvania", "New Jersey", "New York", "Connecticut",
+                    "Massachusetts", "Vermont", "New Hampshire", "Maine"]
+
+    trail_miles = {
+        "Georgia": 79, "North Carolina": 96, "Tennessee": 293, "Virginia": 554, "West Virginia": 4,
+        "Maryland": 41, "Pennsylvania": 229, "New Jersey": 72, "New York": 88, "Connecticut": 52,
+        "Massachusetts": 90, "Vermont": 150, "New Hampshire": 161, "Maine": 282
+    }
+
+    states = gpd.read_file("https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json")
+    states = states[states["name"].isin(trail_states)].copy()
+
+    geometry = [Point(lon, lat) for lon, lat in zip(df['Longitude'], df['Latitude'])]
+    gdf = gpd.GeoDataFrame(df, geometry=geometry, crs='EPSG:4326')
+    gdf = gpd.sjoin(gdf, states, how="left", predicate='within')
+    df['State'] = gdf['name']
+    df = df.dropna(subset=['State'])
+
+    state_counts = df.groupby('State').size().reset_index(name='Trail Magic Count')
+    state_counts["Trail Miles"] = state_counts["State"].map(trail_miles)
+    state_counts["Trail Magic per Mile"] = state_counts["Trail Magic Count"] / state_counts["Trail Miles"]
+    states = states.merge(state_counts, left_on='name', right_on='State', how='left')
+    states["Trail Magic per Mile"] = states["Trail Magic per Mile"].fillna(0)
+
+    m = folium.Map(location=[39.5, -77.5], zoom_start=5, tiles='OpenStreetMap')
+    folium.Choropleth(
+        geo_data=states.to_json(),
+        name="Trail Magic per Mile",
+        data=states,
+        columns=["name", "Trail Magic per Mile"],
+        key_on="feature.properties.name",
+        fill_color="YlGnBu",
+        fill_opacity=0.7,
+        line_opacity=0.5,
+        legend_name="Trail Magic Events per Mile",
+        highlight=True
+    ).add_to(m)
+
+    folium.GeoJson(
+        states,
+        tooltip=folium.GeoJsonTooltip(
+            fields=["name", "Trail Magic Count", "Trail Miles", "Trail Magic per Mile"],
+            aliases=["State: ", "Trail Magic Count: ", "Trail Miles: ", "Per Mile: "],
+            localize=True
+        )
+    ).add_to(m)
+
+    m.get_root().html.add_child(folium.Element(
+        f"<h4 align='center' style='font-size:18px;'>Trail Magic per Mile in {selected_year}</h4>"
+    ))
+
+    st_data = st_folium(m, width=1000, height=600)
+
+
+
+with tabs[4]:
     st.header("Negative Emotions of NOBO Hikers Across the Trail 👎⬆️")
     col1, col2 = st.columns([2,1])
     with col1:
@@ -192,7 +266,7 @@ with tabs[3]:
 
 
 
-with tabs[4]:
+with tabs[5]:
     st.header("Negative Emotions of SOBO Hikers Across the Trail 👎⬇️")
     col1, col2 = st.columns([2,1])
     with col1:
