@@ -104,7 +104,7 @@ smmap==5.0.2
 stack-data==0.6.3
 statsmodels==0.14.4
 streamlit==1.44.1
-streamlit_folium==0.24.1
+streamlit-folium==0.24.1
 sympy==1.13.3
 tenacity==9.1.2
 termcolor==3.0.1
