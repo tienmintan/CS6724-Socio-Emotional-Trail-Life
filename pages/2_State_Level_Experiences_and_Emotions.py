@@ -116,6 +116,7 @@ with tabs[1]:
 
 with tabs[2]:
     st.header("Trail Magic Occurences per Mile in Each State 💫")
+    st.subheader("Click on the next tab to see the trail magic per mile for every year!")
     col1, col2 = st.columns([2,1])
     with col1:
         with open("trail_magic_per_mile_map.html", "r", encoding="utf-8") as file:
